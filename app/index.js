@@ -13,18 +13,16 @@ const Header = styled.header`
   }
 `
 
-const Footer = styled.header`
+const Footer = styled.footer`
 padding: 2em;
-${p => p.dark ? `
-  background: black;
-  color: white;
-` : `
-  background: yellow;
-  color: #444;
-`}
+  ${p => p.dark ? `
+    background: black;
+    color: white;
+  ` : `
+    background: yellow;
+    color: #444;
+  `}
 `
-
-
 
 const Img = styled.img`
   width: ${p => p.imageWidth || 400}px
