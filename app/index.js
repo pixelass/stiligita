@@ -1,44 +1,63 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {render} from 'react-dom'
 import styled from '../src'
 
 const Header = styled.header`
-  background: red;
-  color: green;
+  padding: 3em 5em;
+  background: ${_ => _.active ? 'blue' : 'red'};
+  color: white;
   transition: background 1s;
 
   &:hover {
-    background: white;
+    background: ${_ => _.active ? 'green' : 'purple'};
   }
 `
 
 const Footer = styled.header`
 padding: 2em;
-background: #ccc;
-${p => p.dark && `
+${p => p.dark ? `
   background: black;
   color: white;
+` : `
+  background: yellow;
+  color: #444;
 `}
 `
+
 
 
 const Img = styled.img`
   width: ${p => p.imageWidth || 400}px
 `
-const App = () => (
-<div>
-  <Header>Foo Bar BAz</Header>
-  <Footer dark>Foo Bar BAz</Footer>
-  <Footer>Foo Bar BAz</Footer>
-  <Footer>Foo Bar BAz</Footer>
-  <Footer>Foo Bar BAz</Footer>
-  <Footer>Foo Bar BAz</Footer>
-  <Footer>Foo Bar BAz</Footer>
-  <Img src='//placehold.it/800' imageWidth={100}/>
-  <Img src='//placehold.it/800' imageWidth={200}/>
-  <Img src='//placehold.it/800' imageWidth={300}/>
-  <Img src='//placehold.it/800' imageWidth={400}/>
-</div>
-)
+
+class App extends Component {
+  constructor(){
+    super()
+    this.state = {}
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(e) {
+    this.setState({
+      active: !this.state.active
+    })
+  }
+  render() {
+    return (
+      <div>
+        <Header onClick={this.handleClick}
+                active={this.state.active}>
+          Stiligita
+        </Header>
+        <Footer dark>Footer</Footer>
+        <Footer>Footer</Footer>
+        <Img src='//placehold.it/800' imageWidth={100}/>
+        <Img src='//placehold.it/800' imageWidth={100}/>
+        <Img src='//placehold.it/800' imageWidth={200}/>
+        <Img src='//placehold.it/800' imageWidth={200}/>
+      </div>
+    )
+  }
+}
+
 
 render(<App/>, document.getElementById('app'))
