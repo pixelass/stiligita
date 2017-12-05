@@ -2,8 +2,8 @@ class Store {
   constructor() {
     this.__STYLES__ = {}
     this.__KEYFRAMES__ = {}
-    this.STYLE_TAG = document.createElement('style')
-    document.head.appendChild(this.STYLE_TAG)
+    this.__STYLE_TAG__ = document.createElement('style')
+    document.head.appendChild(this.__STYLE_TAG__)
   }
 }
 

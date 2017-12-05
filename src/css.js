@@ -1,21 +1,30 @@
-import Stylis from 'stylis'
-const ProcessCSS = new Stylis({keyframe: false, compress: false})
+//import Stylis from 'stylis'
+import {ensureTruthy} from './_'
+
+//const ProcessCSS = new Stylis({keyframe: false, compress: false, prefix: false})
+export const minifyCSS = css => css.replace(/\s+/g, ' ').replace(/\s?([:;\,\{\}\(\)])\s?/g, '$1').replace(/;\}/g, '}')
 
 export const createStyleBlock = (rules, keyframes) => {
   const proccesedRules = Object.keys(rules).map(key => {
-    return ProcessCSS(`.${key}`, rules[key])
+    return `.${key}{${rules[key].trim()}}` //ProcessCSS(`.${key}`, `${rules[key]}`)
   }).join('')
-  const processedKeyframes = Object.keys(keyframes).map(key => {
-    return ProcessCSS('', `@keyframes ${key} {${keyframes[key]}}`)
+  const proccesedKeyframes = Object.keys(keyframes).map(key => {
+    return `@keyframes ${key}{${keyframes[key].trim()}}`//ProcessCSS('',`@keyframes ${key} {${keyframes[key]}}`)
   }).join('')
-  return [proccesedRules, processedKeyframes].join('')
+  return minifyCSS(`${proccesedRules}${proccesedKeyframes}`)
 }
 
-export const createCSS = (strings, args, props) => strings.map((str, i) => {
-    const dynamic = args[i] || ''
-    let addon = dynamic
-    if (typeof dynamic === 'function') {
-      addon = dynamic(props) || ''
+export const createCSS = (strings, args, props) => {
+  const parts = strings.map((str, i) => {
+    const dynamic = ensureTruthy(args[i]) || ''
+    switch(typeof dynamic) {
+      case 'function':
+        return `${str}${ensureTruthy(dynamic(props)) || ''}`
+      case 'string':
+        return `${str}${dynamic}`
+      default:
+        throw new TypeError(`Cannot create stylesheet from ${typeof dynamic}`)
     }
-    return `${str}${addon}`
-  }).join('')
+  })
+  return parts.join('')
+}

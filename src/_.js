@@ -1,17 +1,26 @@
-import {omit as cleanObject} from 'lodash.omit'
-
-export const filterObject = obj => {
-  for (var i in obj) {
-    if (!obj[i]) {
-      delete obj[i];
-    }
-  }
-  return obj
+export const isListener = onEvent => {
+  const [o, n, Event] = onEvent
+  return o === 'o' && n === 'n' & Event === Event.toUpperCase()
 }
 
-export const notListener = _ => {
-  const [o, n, C] = _
-  return !(o === 'o' && n === 'n' & C === C.toUpperCase())
-}
+export const isTruthy = (input, reject = [undefined, null, false]) => reject.indexOf(input) < 0
 
-export {cleanObject}
+export const isFalsy = (input, reject = [undefined, null, false]) => !isTruthy(input, reject)
+
+export const ensureTruthy = (input, reject = [undefined, null, false]) =>
+  isFalsy(input, reject) ? false : input
+
+export const ensureFalsy = (input, accept = [undefined, null, false]) =>
+  isTruthy(input, accept) ? false : input
+
+export const filterObject = obj => Object.keys(obj)
+  .filter(key => isTruthy(obj[key]))
+  .map(prop => ({[prop]: obj[prop]}))
+  .reduce((a, b) => ({...a, ...b}), {})
+
+
+export const cleanObject = (obj, removals) => Object.keys(obj)
+  .filter(key => isTruthy(key, removals))
+  .map(prop => ({[prop]: obj[prop]}))
+  .reduce((a, b) => ({...a, ...b}), {})
+
