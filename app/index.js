@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import styled, {Keyframes, Styles} from '../src'
+import styled, {Keyframes} from '../src'
 
 const spin = Keyframes`to {transform: rotate(360deg);}`
 
@@ -33,11 +33,6 @@ class App extends Component {
   handleClick(e) {
     this.setState({
       active: !this.state.active
-    })
-  }
-  componentDidMount(){
-    this.setState({
-      active: false
     })
   }
   render() {
