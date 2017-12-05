@@ -7,11 +7,8 @@ export const isTruthy = (input, reject = [undefined, null, false]) => reject.ind
 
 export const isFalsy = (input, reject = [undefined, null, false]) => !isTruthy(input, reject)
 
-export const ensureTruthy = (input, reject = [undefined, null, false]) =>
-  isFalsy(input, reject) ? false : input
-
-export const ensureFalsy = (input, accept = [undefined, null, false]) =>
-  isTruthy(input, accept) ? false : input
+export const ensureTruthy = (input, fallback = '', reject = [undefined, null, false]) =>
+  isFalsy(input, reject) ? fallback : input
 
 export const filterObject = obj => Object.keys(obj)
   .filter(key => isTruthy(obj[key]))

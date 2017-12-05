@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import styled, {Keyframes} from '../src'
+import styled, {Keyframes, Styles} from '../src'
 
 const spin = Keyframes`to {transform: rotate(360deg);}`
 
@@ -35,15 +35,20 @@ class App extends Component {
       active: !this.state.active
     })
   }
+  componentDidMount(){
+    this.setState({
+      active: false
+    })
+  }
   render() {
     return (
       <div>
         <Header onClick={this.handleClick}
-                active={this.state.active}>
-          <Title active={this.state.active}>
+                active={this.state.active}
+                data-foo="I should work">
+          <Title aria-label="Click me to change the state">
             <Spinner active={this.state.active}>🌀</Spinner>
             Click me
-            <Spinner active={!this.state.active}>🌀</Spinner>
           </Title>
         </Header>
       </div>

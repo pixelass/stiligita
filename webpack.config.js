@@ -1,4 +1,7 @@
 const path = require('path')
+const MinifyPlugin = require('babel-minify-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const prod = process.NODE_ENV === 'production'
 
 module.exports = {
   entry: './app/index.js',
@@ -6,7 +9,6 @@ module.exports = {
 
     path: path.resolve(__dirname, 'docs'),
     filename: 'bundle.js',
-    library: 'MyLibrary',
     libraryTarget: 'umd',
   },
 
@@ -19,6 +21,10 @@ module.exports = {
       }
     ]
   },
+  plugins: prod ? [
+    new UglifyJSPlugin(),
+    new MinifyPlugin()
+  ] : [],
   devServer: {
     contentBase: path.join(__dirname, 'docs'),
     compress: true,
