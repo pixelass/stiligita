@@ -1,7 +1,6 @@
 import React, {createElement, Component} from 'react'
 
 import omit from 'lodash.omit'
-import htmlElementAttributes from 'html-element-attributes'
 import domElements, {htmlAttributes, starAttributes} from './dom-elements'
 import Store from './store'
 import {hashCode as hash, uuid, shortid, scopedName} from './hashing'
@@ -16,33 +15,13 @@ domElements.forEach(domElement => {
   styled[domElement] = (..._) => createComponent(_, {domElement})
 })
 
-class Stiligita extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      removeAttrs: []
-    }
-    this.cleanUp = this.cleanUp.bind(this)
-  }
-  componentWillReceiveProps(newProps) {
-    this.cleanUp(newProps)
-  }
-  componentWillMount() {
-    this.cleanUp(this.props)
-  }
-  cleanUp(props) {
-    const elementAttributes = htmlAttributes[props.domElement] || []
-    const validAttributes = [...starAttributes, ...elementAttributes, 'children']
-    this.setState({
-      removeAttrs: Object.keys(props).filter(_ => validAttributes.indexOf(_) < 0 && notListener(_))
-    })
-  }
-  render(){
-    const {removeAttrs} = this.state
-    const props = omit(this.props, removeAttrs)
-    return createElement(this.props.domElement, {...props, className: this.props.className})
-  }
+const getInvalidProperties = props => {
+  const elementAttributes = htmlAttributes[props.domElement] || []
+  const validAttributes = [...starAttributes, ...elementAttributes, 'children']
+  return  Object.keys(props).filter(_ => validAttributes.indexOf(_) < 0 && notListener(_))
 }
+
+const Stiligita = props => createElement(props.domElement, {...omit(props, getInvalidProperties(props)), className: props.className})
 
 const createComponent = (args, {domElement}) => {
   const [strings] = args
