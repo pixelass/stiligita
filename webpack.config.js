@@ -3,9 +3,8 @@ const path = require('path')
 module.exports = {
   entry: './app/index.js',
   output: {
-    // options related to how webpack emits results
 
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'docs'),
     filename: 'bundle.js',
     library: 'MyLibrary',
     libraryTarget: 'umd',
@@ -20,7 +19,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'docs'),
     compress: true,
     historyApiFallback: true,
     hot: false
