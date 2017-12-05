@@ -1,5 +1,14 @@
-exports["MyLibrary"] =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["MyLibrary"] = factory();
+	else
+		root["MyLibrary"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -1010,9 +1019,9 @@ var cleanObject = exports.cleanObject = function cleanObject(obj, removals) {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _templateObject = _taggedTemplateLiteral(['to {transform: rotate(360deg);}'], ['to {transform: rotate(360deg);}']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  background: ', ';\n  transition: background 0.2s ease-in, color 0.2s ease-out;\n'], ['\n  background: ', ';\n  transition: background 0.2s ease-in, color 0.2s ease-out;\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  user-select: none;\n  background: ', ';\n  color: ', ';\n  cursor: pointer;\n'], ['\n  user-select: none;\n  background: ', ';\n  color: ', ';\n  cursor: pointer;\n']),
     _templateObject3 = _taggedTemplateLiteral(['\n  position: relative;\n  display: inline-block;\n  animation: ', ' 2s linear infinite;\n  animation-direction: ', ';\n'], ['\n  position: relative;\n  display: inline-block;\n  animation: ', ' 2s linear infinite;\n  animation-direction: ', ';\n']),
-    _templateObject4 = _taggedTemplateLiteral(['\n  font-family: \'Comic Sans MS\';\n  font-size: 4em;\n  margin: 0;\n  text-align: center;\n  color: ', ';\n'], ['\n  font-family: \'Comic Sans MS\';\n  font-size: 4em;\n  margin: 0;\n  text-align: center;\n  color: ', ';\n']);
+    _templateObject4 = _taggedTemplateLiteral(['\n  font-family: \'Comic Sans MS\';\n  font-size: 4em;\n  margin: 0;\n  text-align: center;\n'], ['\n  font-family: \'Comic Sans MS\';\n  font-size: 4em;\n  margin: 0;\n  text-align: center;\n']);
 
 var _react = __webpack_require__(2);
 
@@ -1038,14 +1047,14 @@ var spin = (0, _src.Keyframes)(_templateObject);
 
 var Header = _src2.default.header(_templateObject2, function (_) {
   return _.active ? '#000' : '#fff';
+}, function (_) {
+  return _.active ? '#fff' : '#000';
 });
 
 var Spinner = _src2.default.span(_templateObject3, spin, function (_) {
   return _.active ? 'normal' : 'reverse';
 });
-var Title = _src2.default.h1(_templateObject4, function (_) {
-  return _.active ? '#fff' : '#000';
-});
+var Title = _src2.default.h1(_templateObject4);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -18422,8 +18431,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Keyframes = undefined;
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = __webpack_require__(2);
@@ -18438,11 +18445,11 @@ var _store = __webpack_require__(32);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _hashing = __webpack_require__(33);
+var _hashCode = __webpack_require__(33);
 
-var _2 = __webpack_require__(14);
+var _ = __webpack_require__(14);
 
-var _css = __webpack_require__(40);
+var _css = __webpack_require__(34);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18451,12 +18458,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var styled = new _store2.default();
 
 _domElements2.default.forEach(function (domElement) {
-  styled[domElement] = function () {
-    for (var _len = arguments.length, _ = Array(_len), _key = 0; _key < _len; _key++) {
-      _[_key] = arguments[_key];
+  styled[domElement] = function (strings) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
     }
 
-    return createComponent(_, { domElement: domElement });
+    return createComponent(strings, args, domElement);
   };
 });
 
@@ -18464,45 +18471,30 @@ var getInvalidProperties = function getInvalidProperties(props) {
   var elementAttributes = _domElements.htmlAttributes[props.domElement] || [];
   var validAttributes = [].concat(_toConsumableArray(_domElements.starAttributes), _toConsumableArray(elementAttributes), ['children']);
   return Object.keys(props).filter(function (prop) {
-    return validAttributes.indexOf(prop) < 0 && !(0, _2.isListener)(prop);
+    return validAttributes.indexOf(prop) < 0 && !(0, _.isListener)(prop);
   });
 };
 
 var Stiligita = function Stiligita(props) {
-  return (0, _react.createElement)(props.domElement, _extends({}, (0, _2.cleanObject)(props, getInvalidProperties(props)), { className: props.className }));
+  return (0, _react.createElement)(props.domElement, _extends({}, (0, _.cleanObject)(props, getInvalidProperties(props)), { className: props.className }));
 };
 
-var createComponent = function createComponent(args, _ref) {
-  var domElement = _ref.domElement;
-
-  var _args = _slicedToArray(args, 1),
-      strings = _args[0];
-
-  args.shift();
-  var id = (0, _hashing.uuid)();
-  return function () {
-    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
+var createComponent = function createComponent(strings, args, domElement) {
+  return function (props) {
     var css = (0, _css.createCSS)(strings, args, props);
-    var className = (0, _hashing.scopedName)(id, JSON.stringify((0, _2.filterObject)((0, _2.cleanObject)(props, ['children']))));
+    var className = (0, _hashCode.hashCode)(css);
     styled.__STYLES__[className] = css;
-    if (!styled.STYLE_TAG.innerHTML.match('.' + className + '{')) {
-      styled.STYLE_TAG.innerHTML = (0, _css.createStyleBlock)(styled.__STYLES__, styled.__KEYFRAMES__);
+    if (!styled.__STYLE_TAG__.innerHTML.match('.' + className + '{')) {
+      styled.__STYLE_TAG__.innerHTML = (0, _css.createStyleBlock)(styled.__STYLES__, styled.__KEYFRAMES__);
     }
     return _react2.default.createElement(Stiligita, _extends({}, props, { className: className, domElement: domElement }));
   };
 };
 
-var Keyframes = exports.Keyframes = function Keyframes() {
-  for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    args[_key2] = arguments[_key2];
-  }
-
-  var strings = args[0];
-
-  args.shift();
-  var id = (0, _hashing.scopedName)();
-  styled.__KEYFRAMES__[id] = strings.join('');
+var Keyframes = exports.Keyframes = function Keyframes(strings) {
+  var css = strings.join('');
+  var id = (0, _hashCode.hashCode)(css);
+  styled.__KEYFRAMES__[id] = css;
   return id;
 };
 
@@ -18573,8 +18565,8 @@ var Store = function Store() {
 
   this.__STYLES__ = {};
   this.__KEYFRAMES__ = {};
-  this.STYLE_TAG = document.createElement('style');
-  document.head.appendChild(this.STYLE_TAG);
+  this.__STYLE_TAG__ = document.createElement('style');
+  document.head.appendChild(this.__STYLE_TAG__);
 };
 
 exports.default = Store;
@@ -18587,401 +18579,21 @@ exports.default = Store;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.uuid = exports.scopedName = exports.shortid = exports.hashCode = undefined;
-
-var _abcq = __webpack_require__(34);
-
-var _abcq2 = _interopRequireDefault(_abcq);
-
-var _v = __webpack_require__(36);
-
-var _v2 = _interopRequireDefault(_v);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var hashCode = exports.hashCode = function hashCode(s) {
-  return s.split('').reduce(function (a, b) {
-    a = (a << 5) - a + b.charCodeAt(0);
-    return a & a;
-  }, 0);
+var ensureSelector = function ensureSelector(selector) {
+    return selector[0].match(/[\-0-9]/) ? '_' + selector : selector;
 };
 
-var shortid = exports.shortid = new _abcq2.default();
-
-var scopedName = exports.scopedName = function scopedName() {
-  var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _v2.default)();
-  var suffix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-
-  return shortid.encode(Math.abs(hashCode(id + suffix)));
+var hashCode = exports.hashCode = function hashCode(str) {
+    return ensureSelector(Math.abs(str.split('').reduce(function (a, b) {
+        a = (a << 5) - a + b.charCodeAt(0);
+        return a & a;
+    }, 0)).toString(36));
 };
-
-exports.uuid = _v2.default;
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* global exports */
-module.exports = __webpack_require__(35).default;
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * @file index.js
- * @module abcQ
- * @overview Number / character combination encoder / decoder
- *
- * @author Gregor Adams <greg@pixelass.com>
- * @licence The MIT License (MIT) - See file 'LICENSE' in this project.
- */
-
-/**
- * all lowercase and uppercase letters of the alphabet.
- * Does not include special characters, numbers, puctuation or similar
- * @type {String}
- * @private
- */
-var alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-var abcQ = function () {
-  /**
-   * [constructor description]
-   * @param  {Object} [options={}] Set options to configure the output when
-   *                               generating ids or converting numbers
-   * @param  {String|Array} options.chars The list of characters to combine. It can be an `Array`
-   *                                      or a `String`. If the list contains special characters,
-   *                                      emojis or similar it should be an `Array`.
-   * @param  {Number} options.counter The counter can be initialized with this value. If you want
-   *                                  to start with some longer names try setting `counter: 100000`.
-   *                                   The default value is set to `-1` any lower value will return `null`
-   * @return {this} returns an instance of itself
-   * @example
-   * const unicornLove = new abcQ({
-   *   chars: ['🦄','💖'],
-   *   counter: 42
-   * })
-   */
-  function abcQ() {
-    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    _classCallCheck(this, abcQ);
-
-    /**
-     * The default config is used as a fallback if options
-     * were missing
-     * @private
-     * @type {Object}
-     * @property {String} chars Defults to all uppercase and lowercase characters of the alphabet
-     * @property {Number} counter Defults to `-1`
-     */
-    var defaults = {
-      chars: alphabet,
-      counter: -1
-    };
-    /**
-     * The defaults extended by the options.
-     * @private
-     * @type {Object}
-     */
-    this.options = Object.assign(defaults, options);
-    /**
-     * The list of characters to combine. It can be an `Array` or a `String`.
-     * If the list contains special characters, emojis or similar it should be
-     * an `Array`.
-     * @type {String|Array}
-     * @private
-     */
-    this.chars = this.options.chars;
-    /**
-     * initial value for the counter. Cannot be lower than `-1`
-     * @type {Number}
-     * @private
-     */
-    this.counter = this.options.counter;
-  }
-
-  /**
-   * Method to generate the next string.
-   *
-   * This method is not affected by calling other methods.
-   * It will always return the next combination of characters
-   *
-   * @return {String} Returns the next character combination
-   * @example
-   * const shortid = new abcQ({
-   *   chars: 'ab'
-   * })
-   * let counter = 0
-   * do {
-   *   console.log(shortid.generate())
-   * } while (++counter < 10)
-   * // -> a b aa ab ba bb aaa aab aba abb
-   */
-
-
-  _createClass(abcQ, [{
-    key: 'generate',
-    value: function generate() {
-      return this.encode(++this.counter);
-    }
-
-    /**
-     * Method to encode a number into a combination of characters
-     *
-     * This method does not affect any other method.
-     * This method can be called multiple times before calling `generate`
-     *
-     * @param  {Number} i A number greater than `-1`. Given a list of `"ab"
-     *                  the following will  be returned
-     *                  - 0 -> "a"
-     *                  - 1 -> "b"
-     *                  - 2 -> "aa"
-     *                  - 3 -> "ab"
-     *                  - ...
-     * @return {String} Returns the character combination of the number
-     * @example
-     * const shortid = new abcQ({
-     *   chars: 'ab'
-     * })
-     * console.log(shortid.encode(0))
-     * // -> "a"
-     * console.log(shortid.encode(9))
-     * // -> "abb"
-     */
-
-  }, {
-    key: 'encode',
-    value: function encode(i) {
-      /*
-       * Check if the number is smaller than 0.
-       * Then return `null` or continue
-       */
-      if (i < 0) {
-        return null;
-      }
-      /*
-       * Check for the next slot. A slot is generated when the number in the
-       * current slot is greater than the number of characters in the list.
-       * If a slot is `0` it will not be counted. Instead the value is used as a flag
-       * This means the fist slot has a `0`-based index while the next slots are `1`-based
-       * ### Example
-       * - 'ab': 1; `slots = [1, 0]    -> "b"`
-       * - 'ab': 2; `slots = [2, 1]    -> "aa"`
-       * - 'ab': 9; `slots = [9 ,5, 2] -> "abb"`
-       */
-      var nextSlot = ~~(i / this.chars.length);
-
-      /* Combine and return all slots. */
-      var previousSlots = nextSlot ? this.encode(nextSlot - 1) : '';
-      var currentSlot = this.chars[i % this.chars.length];
-      return previousSlots + currentSlot;
-    }
-
-    /**
-     * Method to decode a combination of characters into a number
-     *
-     * This method does not affect any other method.
-     * This method can be called multiple times before calling `generate`
-     *
-     * @param  {String} str Character combination to decode. Must contain only valid
-     *                      characters, Given a list of `"ab"
-     *                      the following will be returned
-     *                      - "a"  -> 0
-     *                      - "b"  -> 1
-     *                      - "aa" -> 2
-     *                      - "ab" -> 3
-     *                      - ...
-     * @return {Number} Returns the index of the input string
-     * @example
-     * const shortid = new abcQ({
-     *   chars: 'ab'
-     * })
-     * console.log(shortid.decode('a'))
-     * // -> o
-     * console.log(shortid.decode('abb'))
-     * // -> 9
-     */
-
-  }, {
-    key: 'decode',
-    value: function decode(str) {
-      /*
-       * Check if the string contains invalid characters.
-       * Then return `null` or continue
-       */
-      if (str.replace(new RegExp('[' + this.chars + ']', 'g'), '') !== '') {
-        return null;
-      }
-
-      /* Build the index for the given string */
-      var i = 0;
-      var counter = str.length;
-      /* For every slot add the result.
-       * Adds all slots to return a `1`-based index
-       */
-      while (counter--) {
-        var pow = Math.pow(this.chars.length, str.length - 1 - counter);
-        i += (this.chars.indexOf(str[counter]) + 1) * pow;
-      }
-      /* Subtract `1` to switch back to a `0`-based index */
-      return i - 1;
-    }
-  }]);
-
-  return abcQ;
-}();
-
-exports.default = abcQ;
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var rng = __webpack_require__(37);
-var bytesToUuid = __webpack_require__(39);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options == 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-var rng;
-
-var crypto = global.crypto || global.msCrypto; // for IE 11
-if (crypto && crypto.getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-  rng = function whatwgRNG() {
-    crypto.getRandomValues(rnds8);
-    return rnds8;
-  };
-}
-
-if (!rng) {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-  rng = function() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-
-    return rnds;
-  };
-}
-
-module.exports = rng;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(38)))
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  return bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]];
-}
-
-module.exports = bytesToUuid;
-
-
-/***/ }),
-/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19029,3 +18641,4 @@ var createCSS = exports.createCSS = function createCSS(strings, args, props) {
 
 /***/ })
 /******/ ]);
+});
