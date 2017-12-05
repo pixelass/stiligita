@@ -3,6 +3,7 @@ import Abcq from 'abcq'
 import uuid from 'uuid/v4'
 import omit from 'lodash.omit'
 import htmlElementAttributes from 'html-element-attributes'
+import stylis from 'stylis'
 import domElements from './dom-elements'
 
 const hashCode = (s) =>{
@@ -14,9 +15,9 @@ const hashCode = (s) =>{
 
 const shortid = new Abcq()
 
-const createStyleBlock = s => Object.keys(s).map(key => {
-  return `.${key.split(':')[0] + '{'}${s[key]}${'}'}`
-}).join('\n')
+const createStyleBlock = s => Object.keys(s).map(k => {
+  return stylis(`.${k}`, s[k])
+}).join('')
 
 class Styled {
   constructor() {
