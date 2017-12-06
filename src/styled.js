@@ -1,10 +1,10 @@
 import domElements from './dom-elements'
-import {createComponent} from './template'
+import render from './render'
 
 const styled = {}
 
 domElements.forEach(tag => {
-  styled[tag] = (strings, ...args) => createComponent(strings, args, tag)
+  styled[tag] = (strings, ...args) => render.createComponent(strings, args, tag)
   styled[tag].displayName = `styled.${tag}`
 })
 

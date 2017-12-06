@@ -1,8 +1,4 @@
-import React from 'react'
 import {ensureTruthy} from './_'
-import {hashCode} from './hash-code'
-import store from './store'
-import Stiligita from './stiligita'
 
 export const templateWithProps = (strings, args, props) => strings.map((str, i) => {
   const dynamic = ensureTruthy(args[i])
@@ -27,9 +23,7 @@ export const templateWithVars = (strings, args) => strings.map((str, i) => {
   }
 }).join('')
 
-export const createComponent = (strings, args, tag) => props => {
-  const css = templateWithProps(strings, args, props)
-  const className = hashCode(css)
-  store.addRules({[className]: css})
-  return <Stiligita {...props} sid={className} tag={tag}/>
+export default {
+  templateWithProps,
+  templateWithVars
 }

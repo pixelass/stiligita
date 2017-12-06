@@ -27,7 +27,7 @@ class Store {
       this[prop] = {...this[prop], ...obj}
       this.__KEYS__.push(key)
       this.update()
-    }).catch(err => {})
+   }).catch(err => {})
   }
 
   addRules(obj) {
@@ -38,6 +38,6 @@ class Store {
     this.addStyles(obj, '__KEYFRAMES__')
   }
 }
-
-export {Store}
-export default new Store()
+const store = new Store()
+export {store}
+export default store
