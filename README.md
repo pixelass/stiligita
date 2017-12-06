@@ -12,9 +12,9 @@
 
 | Esperanto | Emglish      | React             | Angular   | HTML       | ...?       |
 | --------- | ------------ | ----------------- | ----------| ---------- | ---------- |
-| stiligita | styled       | stiligita         | stiligita | stiligita  | stiligita  |
-|           | stylized     | styled-components |           |            |            |
-|           | streamlined  |                   |           |            |            |
+| stiligita | streamlined  | stiligita         | stiligita | stiligita  | stiligita  |
+|           | styled       | styled-components |           |            |            |
+|           | stylized     |                   |           |            |            |
 
 Similar to [styled-components](https://github.com/styled-components/styled-components) but a lot simpler and smaller.
 
