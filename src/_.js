@@ -15,7 +15,6 @@ export const filterObject = obj => Object.keys(obj)
   .map(prop => ({[prop]: obj[prop]}))
   .reduce((a, b) => ({...a, ...b}), {})
 
-
 export const cleanObject = (obj, removals) => Object.keys(obj)
   .filter(key => isTruthy(key, removals))
   .map(prop => ({[prop]: obj[prop]}))

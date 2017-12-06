@@ -23,6 +23,7 @@ class Store {
     this.__STYLES__ = {...this.__STYLES__, ...obj}
     this.update(this.__STYLES__)
   }
+
   addKeyframes(obj) {
     this.__CACHE__ = JSON.stringify(this.__KEYFRAMES__)
     this.__KEYFRAMES__ = {...this.__KEYFRAMES__, ...obj}
@@ -30,4 +31,5 @@ class Store {
   }
 }
 
-export default Store
+export {Store}
+export default new Store()
