@@ -30,6 +30,6 @@ export const templateWithVars = (strings, args) => strings.map((str, i) => {
 export const createComponent = (strings, args, tag) => props => {
   const css = templateWithProps(strings, args, props)
   const className = hashCode(css)
-  store.addStyles({[className]: css})
-  return <Stiligita {...props} stiligitaId={className} tag={tag}/>
+  store.addRules({[className]: css})
+  return <Stiligita {...props} sid={className} tag={tag}/>
 }
