@@ -1,15 +1,67 @@
-# stiligita
+# 🔫 stiligita 🌀
 
 
 ## Really just a prototype.
 
 
-Similar to [styled-components](https://github.com/styled-components/styled-components)
+> 🔫 Stiligita is styled components for everybody 🌀  
+> Simple recipe for everybodies taste  
+> just add water and stir.
+
+## Idea.
+
+| Esperanto | Emglish      | React             | Angular   | HTML       | ...?       |
+| --------- | ------------ | ----------------- | ----------| ---------- | ---------- |
+| stiligita | styled       | stiligita         | stiligita | stiligita  | stiligita  |
+|           | stylized     | styled-components |           |            |            |
+|           | streamlined  |                   |           |            |            |
+
+Similar to [styled-components](https://github.com/styled-components/styled-components) but a lot simpler and smaller.
+
+Stiligita does not intend to provide all features of "styled-cpmonents" but you can build these features if you need them.  
+Need styled-componets in angular? Just add water (angular) and stir (privde a wrapper).
+
+## Example: nested css & prefixing
+
+Stiligita allows you to choose a cssProcessor.
+
+
+```js
+import Stylis from 'stylis'
+import {render} from 'stiligita'
+// enable nested rules, and prefixing
+render.processor = new Stylis()
+```
+
+**The API changes from**
+
+```js
+const Button = styled.button`
+  background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
+  color: white;
+`
+```
+
+**to**
+
+```js
+const Button = styled.button`
+  background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
+  color: white;
+
+  &:hover {
+    background: ${props => props.primary ? '#66ccff' : '#999999'};
+  }
+`
+```
+
+
+## Default: "no helpers" = fast small and simple
 
 ```jsx
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import styled, {Keyframes} from '../src'
+import styled, {Keyframes} from 'stiligita'
 
 const spin = Keyframes`to {transform: rotate(360deg);}`
 
