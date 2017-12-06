@@ -18,8 +18,8 @@
 
 Similar to [styled-components](https://github.com/styled-components/styled-components) but a lot simpler and smaller.
 
-Stiligita does not intend to provide all features of "styled-cpmonents" but you can build these features if you need them.  
-Need styled-componets in angular? Just add water (angular) and stir (privde a wrapper).
+Stiligita does not intend to provide all features of "styled-components" but you can build these features if you need them.  
+Need styled-componets in angular? Just add water (Angular) and stir (provide a wrapper).
 
 
 ## Vanilla: It doesn't get easier than this.
