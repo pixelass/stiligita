@@ -10,7 +10,7 @@
 
 ## Idea.
 
-| Esperanto | Emglish      | React             | Angular   | HTML       | ...?       |
+| Esperanto | English      | React             | Angular   | HTML       | ...?       |
 | --------- | ------------ | ----------------- | ----------| ---------- | ---------- |
 | stiligita | streamlined  | stiligita         | stiligita | stiligita  | stiligita  |
 |           | styled       | styled-components |           |            |            |
