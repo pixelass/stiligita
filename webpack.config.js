@@ -4,7 +4,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const prod = process.NODE_ENV === 'production'
 
 module.exports = {
-  entry: './app/index.js',
+  entry: './app/index-react.js',
   output: {
 
     path: path.resolve(__dirname, 'docs'),

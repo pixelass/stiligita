@@ -1,7 +1,7 @@
 import {templateWithProps} from './template'
 import {hashCode} from './hash-code'
 import {store} from './store'
-import {NAMESPACE} from './constants'
+import {NAMESPACE, PROCESSOR, CREATE_COMPONENT} from './constants'
 
 const simpleProcessor = (key, content) => key ? `${key}{${content}}` : content
 
@@ -28,26 +28,24 @@ const simpleCreateComponent = (strings, args, tag) => props => {
 
 class Renderer {
   constructor() {
-    this.__PROCESSOR__ = simpleProcessor
-    this.__CREATE_COMPONENT__ = simpleCreateComponent
+    this[PROCESSOR] = simpleProcessor
+    this[CREATE_COMPONENT] = simpleCreateComponent
     this.processCSS = this.processCSS.bind(this)
     this.createComponent = this.createComponent.bind(this)
+    this.use = this.use.bind(this)
   }
 
-  set processor(processor) {
-    this.__PROCESSOR__ = processor
-  }
-
-  set componentFactory(createComponent) {
-    this.__CREATE_COMPONENT__ = createComponent
+  use(plugin) {
+    this[plugin.stiligita] = plugin
+    return {use: this.use}
   }
 
   processCSS(key, content) {
-    return this.__PROCESSOR__(key, content)
+    return this[PROCESSOR](key, content)
   }
 
   createComponent(strings, args, tag) {
-    return this.__CREATE_COMPONENT__(strings, args, tag)
+    return this[CREATE_COMPONENT](strings, args, tag)
   }
 }
 

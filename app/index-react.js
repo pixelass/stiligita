@@ -3,9 +3,14 @@ import {render} from 'react-dom'
 import Stylis from 'stylis'
 import styled, {Keyframes, render as renderStyled} from '../src'
 import renderReact from '../src/stiligita-react'
+import {PROCESSOR} from '../src/constants'
 
-renderStyled.processor = new Stylis({keyframe: false})
-renderStyled.componentFactory = renderReact
+const stylis = new Stylis({keyframe: false})
+stylis.stiligita = PROCESSOR
+
+renderStyled
+  .use(renderReact)
+  .use(stylis)
 
 const spin = Keyframes`to {transform: rotate(360deg);}`
 
