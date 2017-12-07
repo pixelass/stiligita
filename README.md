@@ -64,18 +64,18 @@ Stiligita allows you to choose a RenderEngine.
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import Stylis from 'stylis'
-import styled, {Keyframes, render as renderStyled} from 'stiligita'
+import styled, {keyframes} from 'stiligita'
 import renderReact from 'stiligita/lib/stiligita-react'
 import {PROCESSOR} from 'stiligita/lib/constants'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
 
-renderStyled
+styled
   .use(renderReact)
   .use(stylis)
 
-const spin = Keyframes`to {transform: rotate(360deg);}`
+const spin = keyframes`to {transform: rotate(360deg);}`
 
 const theme = {
   primary: '#ff0080',
@@ -175,13 +175,13 @@ Stiligita allows you to choose a cssProcessor.
 
 ```js
 import Stylis from 'stylis'
-import styled, {render as renderStyles} from 'stiligita'
+import styled from 'stiligita'
 import {PROCESSOR} from 'stiligita/lib/constants'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
 
-renderStyled
+styled
   .use(stylis)
 ```
 
