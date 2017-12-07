@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import Stylis from 'stylis'
-import styled, {Keyframes, render as renderStyled} from '../src'
+import styled, {keyframes} from '../src'
 import renderReact from '../src/stiligita-react'
 import {PROCESSOR} from '../src/constants'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
-
-renderStyled
+styled
   .use(renderReact)
   .use(stylis)
 
-const spin = Keyframes`to {transform: rotate(360deg);}`
+const spin = keyframes`to {transform: rotate(360deg);}`
 
 const theme = {
   primary: '#ff0080',
