@@ -44,12 +44,14 @@ const Footer = styled.footer`
 `
 
 const Spinner = styled('span', {
-  active: Boolean
+  active: Boolean,
+  reverse: Boolean
 })`
   position: relative;
   display: inline-block;
   animation: ${spin} 2s linear infinite;
-  animation-direction: ${props => props.active ? 'normal' : 'reverse'};
+  animation-direction: ${props => props.reverse ? 'reverse' : 'normal'};
+  animation-play-state: ${props => props.active ? 'playing' : 'paused'};
 `
 
 const Title = styled.h1`
@@ -77,13 +79,13 @@ const Button = styled('button', {
   }
 `
 
-const STORAGE_KEY = 'stiligita-vue-1.0.0-1'
-const dummyStorage = {
+const STORAGE_KEY = 'stiligita-vue-1.0.0-0'
+const appStore = {
   fetch: function () {
-    return localStorage.getItem(STORAGE_KEY) === 'true'
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"active": false, "reverse": false}')
   },
-  save: function (active) {
-    localStorage.setItem(STORAGE_KEY, active)
+  save: function (state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   }
 }
 
@@ -92,21 +94,26 @@ const App = {
   name: 'Example',
   data() {
     return {
-      active: dummyStorage.fetch()
+      state: appStore.fetch()
     }
   },
-
-  // watch todos change for localStorage persistence
   watch: {
-    active: {
-      handler: function (active) {
-        dummyStorage.save(active)
-      }
-    }
+    state: {
+      handler: function (state) {
+        appStore.save(state)
+      },
+      deep: true
+    },
   },
   methods: {
+    setState(state) {
+      this.state = {...this.state, ...state}
+    },
     toggleActive(e) {
-      this.active = !this.active
+      this.setState({active: !this.state.active})
+    },
+    toggleDirection(e) {
+      this.setState({reverse: !this.state.reverse})
     }
   },
   render(h) {
@@ -114,14 +121,16 @@ const App = {
       <Wrapper>
         <Header data-foo="I should work">
           <Title aria-label="I am Aria">
-            <Spinner active={this.active}>🔫</Spinner>
+            <Spinner active={this.state.active}
+                     reverse={this.state.reverse}>🔫</Spinner>
             Stiligita
-            <Spinner active={this.active}>🌀</Spinner>
+            <Spinner active={this.state.active}
+                     reverse={this.state.reverse}>🌀</Spinner>
           </Title>
         </Header>
         <main>
-          <Button { ...{ on: {click: this.toggleActive} }} type='submit' primary>Switch direction</Button>
-          <Button >Switch direction</Button>
+          <Button {...{on: {click: this.toggleActive}}} type='submit' primary>{this.active ? 'Pause' : 'Play'}</Button>
+          <Button {...{on: {click: this.toggleDirection}}}>Switch direction</Button>
         </main>
         <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
       </Wrapper>
