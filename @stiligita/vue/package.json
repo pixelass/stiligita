@@ -7,11 +7,9 @@
   },
   "dependencies": {
     "@stiligita/constants": "^1.0.0",
-    "@stiligita/dom-elements": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
     "@stiligita/store": "^1.0.0",
-    "@stiligita/templates": "^1.0.0",
-    "@stiligita/utils": "^1.0.0"
+    "@stiligita/templates": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

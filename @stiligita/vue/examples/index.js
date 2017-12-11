@@ -63,7 +63,10 @@ const Title = styled.h1`
 `
 
 const Button = styled('button', {
-  type: String,
+  type: {
+    type: String,
+    required: true
+  },
   primary: Boolean
 })`
   background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
@@ -129,8 +132,15 @@ const App = {
           </Title>
         </Header>
         <main>
-          <Button {...{on: {click: this.toggleActive}}} type='submit' primary>{this.active ? 'Pause' : 'Play'}</Button>
-          <Button {...{on: {click: this.toggleDirection}}}>Switch direction</Button>
+          <Button {...{on: {click: this.toggleActive}}}
+                  type='button'
+                  primary>
+            {this.active ? 'Pause' : 'Play'}
+          </Button>
+          <Button {...{on: {click: this.toggleDirection}}}
+                  type='button'>
+            Switch direction
+          </Button>
         </main>
         <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
       </Wrapper>
