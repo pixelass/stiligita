@@ -20,12 +20,12 @@ class Renderer {
     return {use: this.use}
   }
 
-  processCSS(key, content) {
-    return this[PROCESSOR](key, content)
+  processCSS(...args) {
+    return this[PROCESSOR](...args)
   }
 
-  createComponent(strings, args, tag) {
-    return this[CREATE_COMPONENT](strings, args, tag)
+  createComponent(...args) {
+    return this[CREATE_COMPONENT](...args)
   }
 }
 
