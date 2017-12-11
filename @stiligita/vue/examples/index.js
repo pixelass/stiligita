@@ -43,7 +43,9 @@ const Footer = styled.footer`
   color: ${theme.lightText};
 `
 
-const Spinner = styled.span`
+const Spinner = styled('span', {
+  active: Boolean
+})`
   position: relative;
   display: inline-block;
   animation: ${spin} 2s linear infinite;
@@ -58,7 +60,10 @@ const Title = styled.h1`
   text-align: center;
 `
 
-const Button = styled.button`
+const Button = styled('button', {
+  type: String,
+  primary: Boolean
+})`
   background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
   color: black;
   padding: 1em 2em;
@@ -85,7 +90,7 @@ const App = {
           </Title>
         </Header>
         <main>
-          <Button primary>Switch direction</Button>
+          <Button type='submit' primary>Switch direction</Button>
           <Button >Switch direction</Button>
         </main>
         <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
