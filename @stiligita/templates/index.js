@@ -1,6 +1,6 @@
-import {ensureTruthy} from './_'
+import {ensureTruthy} from '@stiligita/utils'
 
-export const templateWithProps = (strings, args, props) => strings.map((str, i) => {
+export const templateWithProps = (strings, args, props = {}) => strings.map((str, i) => {
   const dynamic = ensureTruthy(args[i])
   switch(typeof dynamic) {
     case 'function':

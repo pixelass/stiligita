@@ -1,10 +1,10 @@
 import {createElement} from 'react'
-import {hashCode} from './hash-code'
-import {store} from './store'
-import {cleanObject} from './_'
-import {NAMESPACE, CREATE_COMPONENT} from './constants'
-import {templateWithProps} from './template'
-import getInvalid from './get-invalid-react-attributes'
+import {cleanObject} from '@stiligita/utils'
+import hashCode from '@stiligita/hash-code'
+import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants'
+import {templateWithProps} from '@stiligita/templates'
+import {store} from '@stiligita/store'
+import getInvalid from './get-invalid-attributes'
 
 export const Element = (props) =>
   createElement(props.tag, {

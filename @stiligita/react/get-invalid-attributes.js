@@ -1,5 +1,5 @@
 import {htmlAttributes} from './dom-elements'
-import {isListener, isTruthy} from './_'
+import {isListener, isTruthy} from '@stiligita/utils'
 export default function(props) {
   const elementAttributes = htmlAttributes[props.tag] || []
   const validAttributes = [...htmlAttributes['*'], ...elementAttributes, 'children']

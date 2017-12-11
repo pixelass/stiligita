@@ -1,14 +1,15 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
+import Vue from 'vue'
 import Stylis from 'stylis'
-import styled, {keyframes} from '@stiligita/core'
-import renderReact from '@stiligita/react'
+import styled from '@stiligita/core'
+import {keyframes} from '@stiligita/stylesheets'
+import renderVue from '@stiligita/vue'
 import {PROCESSOR} from '@stiligita/constants'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
+
 styled
-  .use(renderReact)
+  .use(renderVue)
   .use(stylis)
 
 const spin = keyframes`to {transform: rotate(360deg);}`
@@ -46,7 +47,7 @@ const Spinner = styled.span`
   position: relative;
   display: inline-block;
   animation: ${spin} 2s linear infinite;
-  animation-direction: ${_ => _.active ? 'normal' : 'reverse'};
+  animation-direction: ${props => props.active ? 'normal' : 'reverse'};
 `
 
 const Title = styled.h1`
@@ -71,30 +72,21 @@ const Button = styled.button`
   }
 `
 
-class App extends Component {
-  constructor(){
-    super()
-    this.state = {}
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick(e) {
-    this.setState({
-      active: !this.state.active
-    })
-  }
-  render() {
+const App = {
+  name: 'Example',
+  render(h) {
     return (
       <Wrapper>
         <Header data-foo="I should work">
-          <Title aria-label="Click me to change the state">
-            <Spinner active={this.state.active}>🔫</Spinner>
+          <Title aria-label="I am Aria">
+            <Spinner active={true}>🔫</Spinner>
             Stiligita
-            <Spinner active={this.state.active}>🌀</Spinner>
+            <Spinner active={false}>🌀</Spinner>
           </Title>
         </Header>
         <main>
-          <Button onClick={this.handleClick} primary>Switch direction</Button>
-          <Button onClick={this.handleClick}>Switch direction</Button>
+          <Button primary>Switch direction</Button>
+          <Button >Switch direction</Button>
         </main>
         <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
       </Wrapper>
@@ -102,4 +94,7 @@ class App extends Component {
   }
 }
 
-render(<App/>, document.getElementById('app'))
+
+new Vue({
+  render: createElement => createElement(App)
+}).$mount('#app')

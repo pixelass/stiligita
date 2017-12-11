@@ -4,11 +4,15 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const prod = process.NODE_ENV === 'production'
 
 module.exports = {
-  entry: './app/index-react.js',
+  entry: {
+    react: './app/index-react.js',
+    vue: './app/index-vue.js',
+    dom: './app/index-dom.js'
+  },
   output: {
 
     path: path.resolve(__dirname, 'docs'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     libraryTarget: 'umd',
   },
   devtool: 'source-map',

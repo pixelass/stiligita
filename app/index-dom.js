@@ -1,4 +1,4 @@
-import styled from '../src'
+import styled from '@stiligita/core'
 
 const APP = document.getElementById('app')
 

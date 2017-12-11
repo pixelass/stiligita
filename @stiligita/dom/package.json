@@ -1,0 +1,10 @@
+{
+  "name": "@stiligita/dom",
+  "version": "1.0.0",
+  "dependencies": {
+    "@stiligita/constants": "^1.0.0",
+    "@stiligita/hash-code": "^1.0.0",
+    "@stiligita/store": "^1.0.0",
+    "@stiligita/templates": "^1.0.0"
+  }
+}

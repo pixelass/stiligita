@@ -1,35 +1,36 @@
 {
-  "name": "stiligita",
+  "name": "stiligita-repo",
   "version": "1.0.0",
   "description": "similar to styled components.",
   "main": "lib/index.js",
   "author": "Gregor Adams <greg@pixelass.com>",
+  "private": true,
   "license": "MIT",
-  "scripts": {
-    "babel": "babel src -d lib -s",
-    "build": "cross-env NODE_ENV=production webpack",
-    "build:dist": "cross-env NODE_ENV=production webpack --config dist.webpack.config.js",
-    "watch": "webpack-dev-server"
-  },
   "browserslist": [
     "last 2 chrome versions",
     "last 2 firefox versions",
     "last 2 safari versions",
     "last 2 edge versions"
   ],
+  "workspaces": [
+    "@stiligita/*"
+  ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.1.1",
+    "lerna": "^2.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "stylis": "^3.4.5",
     "uglifyjs-webpack-plugin": "^1.1.2",
+    "vue": "^2.5.9",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.5"
   },

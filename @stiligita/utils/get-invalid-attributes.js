@@ -1,5 +1,5 @@
-import {htmlAttributes} from './react-dom-elements'
-import {isListener, isTruthy} from './_'
+import {htmlAttributes} from '@stiligita/dom-elements'
+import {isListener, isTruthy} from './'
 export default function(props) {
   const elementAttributes = htmlAttributes[props.tag] || []
   const validAttributes = [...htmlAttributes['*'], ...elementAttributes, 'children']

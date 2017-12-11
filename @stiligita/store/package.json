@@ -1,0 +1,8 @@
+{
+  "name": "@stiligita/store",
+  "version": "1.0.0",
+    "dependencies": {
+    "@stiligita/utils": "^1.0.0",
+    "@stiligita/stylesheets": "^1.0.0"
+  }
+}

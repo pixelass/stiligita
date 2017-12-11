@@ -1,0 +1,29 @@
+{
+  "name": "@stiligita/vue",
+  "version": "1.0.0",
+  "scripts": {
+    "babel": "babel examples/index.js > examples/index.trans.js",
+    "watch": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@stiligita/constants": "^1.0.0",
+    "@stiligita/hash-code": "^1.0.0",
+    "@stiligita/store": "^1.0.0",
+    "@stiligita/templates": "^1.0.0",
+    "@stiligita/utils": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "lerna": "^2.5.1",
+    "vue": "^2.5.9",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.5"
+  }
+}

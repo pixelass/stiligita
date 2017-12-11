@@ -1,5 +1,5 @@
-import {isTruthy} from './_'
-import {createStyleBlock} from './css'
+import {isTruthy} from '@stiligita/utils'
+import {createStyleBlock} from '@stiligita/stylesheets'
 
 class Store {
   constructor() {
@@ -38,6 +38,7 @@ class Store {
     this.addStyles(obj, '__KEYFRAMES__')
   }
 }
+
 const store = new Store()
 export {store}
 export default store

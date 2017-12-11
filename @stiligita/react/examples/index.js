@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import Stylis from 'stylis'
-import styled, {keyframes} from '@stiligita/core'
+import styled from '@stiligita/core'
+import {keyframes} from '@stiligita/stylesheets'
 import renderReact from '@stiligita/react'
 import {PROCESSOR} from '@stiligita/constants'
 

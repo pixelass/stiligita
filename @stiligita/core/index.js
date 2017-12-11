@@ -1,8 +1,11 @@
-import domElements from './dom-elements'
-import render from './render'
-import use from './plugins'
+import domElements from '@stiligita/dom-elements'
+import {render} from '@stiligita/dom'
 
-const styled = {use}
+const styled = {
+  use(plugin) {
+    return render.use(plugin)
+  }
+}
 
 domElements.forEach(tag => {
   styled[tag] = (strings, ...args) => render.createComponent(strings, args, tag)

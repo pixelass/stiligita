@@ -1,0 +1,8 @@
+{
+  "name": "@stiligita/core",
+  "version": "1.0.0",
+  "dependencies": {
+    "@stiligita/dom-elements": "^1.0.0",
+    "@stiligita/dom": "^1.0.0"
+  }
+}
