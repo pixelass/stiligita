@@ -14,7 +14,7 @@ const assignStyled = (strings, args, props) => {
 
 const createComponent = (strings, args, tag, defaultProps = {}) => {
   return ({
-    props: {...defaultProps, on: Object},
+    props: {...defaultProps},
     render(h) {
       const {propsData = {}, listeners = {}} = this.$vnode.componentOptions
       const {css, hash} = assignStyled(strings, args, propsData)
