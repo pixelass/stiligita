@@ -13,8 +13,9 @@ export const Element = (props) =>
    })
 Element.displayName = 'Stiligita'
 
-const createComponent = (strings, args, tag) => {
+const createComponent = (strings, args, tag, defaultProps) => {
   const Component = props => {
+    props = {...defaultProps, ...props}
     const css = templateWithProps(strings, args, props)
     const hash = hashCode(css)
     store.addRules({[hash]: css})

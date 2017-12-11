@@ -47,7 +47,7 @@ const Spinner = styled.span`
   position: relative;
   display: inline-block;
   animation: ${spin} 2s linear infinite;
-  animation-direction: ${_ => _.active ? 'normal' : 'reverse'};
+  animation-direction: ${props => props.active ? 'normal' : 'reverse'};
 `
 
 const Title = styled.h1`
@@ -58,7 +58,9 @@ const Title = styled.h1`
   text-align: center;
 `
 
-const Button = styled.button`
+const Button = styled('button', {
+  type: 'button'
+})`
   background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
   color: black;
   padding: 1em 2em;
