@@ -14,12 +14,13 @@ const assignStyled = (strings, args, props) => {
 
 const createComponent = (strings, args, tag, defaultProps = {}) => {
   return ({
-    props: Object.keys(defaultProps),
+    props: {...defaultProps, on: Object},
     render(h) {
-      const {propsData = {}} = this.$vnode.componentOptions
+      const {propsData = {}, listeners = {}} = this.$vnode.componentOptions
       const {css, hash} = assignStyled(strings, args, propsData)
       store.addRules({[hash]: css})
       return h(tag, {
+        on: listeners,
         attrs: {
           ...cleanObject(propsData, getInvalidAttibutes({...propsData, tag})),
           [`data-${NAMESPACE}`]: hash

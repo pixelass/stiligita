@@ -77,20 +77,50 @@ const Button = styled('button', {
   }
 `
 
+const STORAGE_KEY = 'stiligita-vue-1.0.0-1'
+const dummyStorage = {
+  fetch: function () {
+    return localStorage.getItem(STORAGE_KEY) === 'true'
+  },
+  save: function (active) {
+    localStorage.setItem(STORAGE_KEY, active)
+  }
+}
+
+
 const App = {
   name: 'Example',
+  data() {
+    return {
+      active: dummyStorage.fetch()
+    }
+  },
+
+  // watch todos change for localStorage persistence
+  watch: {
+    active: {
+      handler: function (active) {
+        dummyStorage.save(active)
+      }
+    }
+  },
+  methods: {
+    toggleActive(e) {
+      this.active = !this.active
+    }
+  },
   render(h) {
     return (
       <Wrapper>
         <Header data-foo="I should work">
           <Title aria-label="I am Aria">
-            <Spinner active={true}>🔫</Spinner>
+            <Spinner active={this.active}>🔫</Spinner>
             Stiligita
-            <Spinner active={false}>🌀</Spinner>
+            <Spinner active={this.active}>🌀</Spinner>
           </Title>
         </Header>
         <main>
-          <Button type='submit' primary>Switch direction</Button>
+          <Button { ...{ on: {click: this.toggleActive} }} type='submit' primary>Switch direction</Button>
           <Button >Switch direction</Button>
         </main>
         <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
