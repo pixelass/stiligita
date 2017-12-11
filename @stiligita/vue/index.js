@@ -1,23 +1,27 @@
 import Vue from 'vue'
 import {cleanObject} from '@stiligita/utils'
 import hashCode from '@stiligita/hash-code'
+import {getInvalidAttibutes} from '@stiligita/dom-elements'
 import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants'
 import {templateWithProps} from '@stiligita/templates'
 import {store} from '@stiligita/store'
 
+const assignStyled = (strings, args, props) => {
+  const css = templateWithProps(strings, args, props)
+  const hash = hashCode(css)
+  store.addRules({[hash]: css})
+  return {css, hash}
+}
 
 const createComponent = (strings, args, tag, defaultProps = {}) => {
-  const displayName = `styled-${tag}`
-  return Vue.component(displayName, {
+  return ({
     props: Object.keys(defaultProps),
-    render(createElement) {
+    render(h) {
       const {propsData = {}} = this.$vnode.componentOptions
-      const css = templateWithProps(strings, args, propsData)
-      const hash = hashCode(css)
-      store.addRules({[hash]: css})
-      return createElement(tag, {
+      const {css, hash} = assignStyled(strings, args, propsData)
+      return h(tag, {
         attrs: {
-          ...propsData,
+          ...cleanObject(propsData, getInvalidAttibutes({...propsData, tag})),
           [`data-${NAMESPACE}`]: hash
         }
       }, this.$slots.default)
