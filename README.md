@@ -49,7 +49,7 @@ const Header = styled.header`
   color: ${theme.lightText};
 `
 
-APP.appendChild(Wrapper({children: Header({children: 'Stiligita'})}))
+APP.appendChild(Wrapper(Header('Stiligita')))
 
 ```
 
