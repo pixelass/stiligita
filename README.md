@@ -8,11 +8,11 @@ Inspired by [styled-components](https://github.com/styled-components/styled-comp
 
 ## Idea.
 
-| Esperanto | English      | React.js          | Vue.js                | Angular.js | HTML       | ...?       |
-| --------- | ------------ | ----------------- | --------------------- | -----------| ---------- | ---------- |
-| stiligita | streamlined  | stiligita         |  stiligita            | stiligita  | stiligita  | stiligita  |
-|           | styled       | styled-components |                       |            |            |            |
-|           | stylized     |                   | vue-styled-components |            |            |            |
+| Esperanto | English      | React.js          | Vue.js                | HTML            | Angular.js | ...?       |
+| --------- | ------------ | ----------------- | --------------------- | --------------- | -----------| ---------- |
+| stiligita | streamlined  | stiligita         | stiligita             | stiligita       | stiligita  | stiligita  |
+|           | styled       | styled-components |                       |                 |            |            |
+|           | stylized     |                   | vue-styled-components | styled-elements |            |            |
 
 
 Stiligita does not intend to provide all features of "styled-components" but you can build these features if you need them.  
