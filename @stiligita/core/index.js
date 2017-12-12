@@ -29,10 +29,8 @@ function styled(tag, props) {
 styled.use = plugin => render.use(plugin)
 
 // Add literals for each DOM element
-// Give it a displayName that can be used by plugins
 domElements.forEach(tag => {
   styled[tag] = (strings, ...args) => render.createComponent(strings, args, tag)
-  styled[tag].displayName = `styled.${tag}`
 })
 
 export default styled
