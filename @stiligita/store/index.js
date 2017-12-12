@@ -23,11 +23,13 @@ class Store {
 
   addStyles(obj, prop) {
     const [key] = Object.keys(obj)
-    this.diff(key).then(()=> {
+    this.diff(key).then(() => {
       this[prop] = {...this[prop], ...obj}
       this.__KEYS__.push(key)
       this.update()
-   }).catch(err => {})
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
   addRules(obj) {

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import hashCode from '@stiligita/hash-code'
 import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants'
 import {templateWithProps} from '@stiligita/templates'
@@ -44,7 +43,7 @@ const createComponent = (strings, args, tag, defaultProps = {}) => {
       // Create css and hash, then write it to the store
       const {css, hash} = assignStyled(strings, args, propsData)
       store.addRules({[hash]: css})
-      // return a styled Vue element
+      // Return a styled Vue element
       // Passes listeners
       // Adds data attribute to link to styles
       return h(tag, {
@@ -58,7 +57,7 @@ const createComponent = (strings, args, tag, defaultProps = {}) => {
           [`data-${NAMESPACE}`]: hash
         }
       },
-      // render the default slot
+      // Render the default slot
       // @todo Is this correct?
       this.$slots.default)
     }

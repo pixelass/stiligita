@@ -7,9 +7,11 @@
   },
   "dependencies": {
     "@stiligita/constants": "^1.0.0",
+    "@stiligita/core": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
     "@stiligita/store": "^1.0.0",
-    "@stiligita/templates": "^1.0.0"
+    "@stiligita/templates": "^1.0.0",
+    "@stiligita/vue": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -21,6 +23,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "lerna": "^2.5.1",
+    "@stiligita/stylesheets": "^1.0.0",
+    "stylis": "^3.4.5",
     "vue": "^2.5.9",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.5"

@@ -1,7 +1,4 @@
-import hashCode from '@stiligita/hash-code'
-import {NAMESPACE, PROCESSOR, CREATE_COMPONENT} from '@stiligita/constants'
-import {templateWithProps} from '@stiligita/templates'
-import {store} from '@stiligita/store'
+import {PROCESSOR, CREATE_COMPONENT} from '@stiligita/constants'
 
 /**
  * A simple CSS processor that simply wraps rules in a selector if present
@@ -14,7 +11,7 @@ import {store} from '@stiligita/store'
  */
 const simpleProcessor = (key, content) => key ? `${key}{${content}}` : content
 // @todo Add something more meaningfull here
-const simpleCreateComponent = (strings, args, tag) => props => {}
+const simpleCreateComponent = () => () => {}
 
 /**
  * Private render class. Hnadles the entire rendering logic.
@@ -66,5 +63,5 @@ class Renderer {
   }
 }
 
-// export one instance
+// Export one instance
 export default new Renderer()

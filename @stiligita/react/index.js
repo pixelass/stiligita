@@ -6,11 +6,11 @@ import {templateWithProps} from '@stiligita/templates'
 import {store} from '@stiligita/store'
 import getInvalid from './get-invalid-attributes'
 
-export const Element = (props) =>
+export const Element = props =>
   createElement(props.tag, {
     ...cleanObject(props, getInvalid(props)),
-     [`data-${NAMESPACE}`]: props.hash
-   })
+    [`data-${NAMESPACE}`]: props.hash
+  })
 Element.displayName = 'Stiligita'
 
 const createComponent = (strings, args, tag, defaultProps) => {

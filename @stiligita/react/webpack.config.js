@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: DOCS,
     filename: '[name].js',
-    libraryTarget: 'umd',
+    libraryTarget: 'umd'
   },
   devtool: 'source-map',
   module: {

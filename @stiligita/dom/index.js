@@ -1,4 +1,5 @@
 import render from './render'
+
 const DOM = {
   render
 }

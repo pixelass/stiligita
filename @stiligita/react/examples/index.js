@@ -75,12 +75,12 @@ const Button = styled('button', {
 `
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {}
     this.handleClick = this.handleClick.bind(this)
   }
-  handleClick(e) {
+  handleClick() {
     this.setState({
       active: !this.state.active
     })
@@ -88,8 +88,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header data-foo="I should work">
-          <Title aria-label="Click me to change the state">
+        <Header data-foo='I should work'>
+          <Title aria-label='Click me to change the state'>
             <Spinner active={this.state.active}>🔫</Spinner>
             Stiligita
             <Spinner active={this.state.active}>🌀</Spinner>

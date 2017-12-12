@@ -85,10 +85,10 @@ const Button = styled('button', {
 const initialState = {active: false, reverse: false}
 const appStore = {
   state: {...initialState},
-  fetch: function () {
+  fetch() {
     return appStore.state
   },
-  save: function (state) {
+  save(state) {
     appStore.state = {...appStore.state, ...state}
   }
 }
@@ -102,33 +102,38 @@ const App = {
   },
   watch: {
     state: {
-      handler: function (state) {
+      handler(state) {
         appStore.save(state)
       },
       deep: true
-    },
+    }
   },
   methods: {
     setState(state) {
       this.state = {...this.state, ...state}
     },
-    toggleActive(e) {
+    toggleActive() {
       this.setState({active: !this.state.active})
     },
-    toggleDirection(e) {
+    toggleDirection() {
       this.setState({reverse: !this.state.reverse})
     }
   },
-  render(h) {
+
+  render(h) { // eslint-disable-line no-unused-vars
     return (
       <Wrapper>
-        <Header data-foo="I should work">
-          <Title aria-label="I am Aria">
+        <Header data-foo='I should work'>
+          <Title aria-label='I am Aria'>
             <Spinner active={this.state.active}
-                     reverse={this.state.reverse}>🔫</Spinner>
+                     reverse={this.state.reverse}>
+              🔫
+            </Spinner>
             Stiligita
             <Spinner active={this.state.active}
-                     reverse={this.state.reverse}>🌀</Spinner>
+                     reverse={this.state.reverse}>
+              🌀
+            </Spinner>
           </Title>
         </Header>
         <main>
