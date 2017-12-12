@@ -1,22 +1,19 @@
 # 🔫 stiligita 🌀
 
+Inspired by [styled-components](https://github.com/styled-components/styled-components).
 
 ## Really just a prototype.
 
-
 > 🔫 Stiligita is styled components for everybody 🌀  
-> Simple recipe for everybodies taste  
-> just add water and stir.
 
 ## Idea.
 
-| Esperanto | English      | React             | Angular   | HTML       | ...?       |
-| --------- | ------------ | ----------------- | ----------| ---------- | ---------- |
-| stiligita | streamlined  | stiligita         | stiligita | stiligita  | stiligita  |
-|           | styled       | styled-components |           |            |            |
-|           | stylized     |                   |           |            |            |
+| Esperanto | English      | React.js          | Vue.js                | Angular.js | HTML       | ...?       |
+| --------- | ------------ | ----------------- | --------------------- | -----------| ---------- | ---------- |
+| stiligita | streamlined  | stiligita         |  stiligita            | stiligita  | stiligita  | stiligita  |
+|           | styled       | styled-components |                       |            |            |            |
+|           | stylized     |                   | vue-styled-components |            |            |            |
 
-Similar to [styled-components](https://github.com/styled-components/styled-components) but a lot simpler and smaller.
 
 Stiligita does not intend to provide all features of "styled-components" but you can build these features if you need them.  
 Need styled-componets in angular? Just add water (Angular) and stir (provide a wrapper).
@@ -207,4 +204,4 @@ const Button = styled.button`
 `
 ```
 
-
+© Copyright 2017 | Gregor Adams

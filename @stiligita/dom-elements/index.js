@@ -1,4 +1,3 @@
-export {default as getInvalidAttibutes} from './get-invalid-attributes'
 export default [
   'a',
   'abbr',
