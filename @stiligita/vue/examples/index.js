@@ -82,16 +82,16 @@ const Button = styled('button', {
   }
 `
 
-const STORAGE_KEY = 'stiligita-vue-1.0.0-0'
+const initialState = {active: false, reverse: false}
 const appStore = {
+  state: {...initialState},
   fetch: function () {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"active": false, "reverse": false}')
+    return appStore.state
   },
   save: function (state) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    appStore.state = {...appStore.state, ...state}
   }
 }
-
 
 const App = {
   name: 'Example',
@@ -135,7 +135,7 @@ const App = {
           <Button {...{on: {click: this.toggleActive}}}
                   type='button'
                   primary>
-            {this.active ? 'Pause' : 'Play'}
+            {this.state.active ? 'Pause' : 'Play'}
           </Button>
           <Button {...{on: {click: this.toggleDirection}}}
                   type='button'>
@@ -147,7 +147,6 @@ const App = {
     )
   }
 }
-
 
 new Vue({
   render: createElement => createElement(App)
