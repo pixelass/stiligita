@@ -1,5 +1,5 @@
 import {isTruthy} from '@stiligita/utils'
-import {createStyleBlock} from '@stiligita/stylesheets'
+import createStyleBlock from '@stiligita/stylesheets'
 
 class Store {
   constructor() {
@@ -24,7 +24,8 @@ class Store {
   addStyles(obj, prop) {
     const [key] = Object.keys(obj)
     this.diff(key).then(() => {
-      this[prop] = {...this[prop], ...obj}
+      // Original: {...this[prop], ...obj}
+      this[prop] = Object.assign({}, this[prop], obj)
       this.__KEYS__.push(key)
       this.update()
     }).catch(err => {

@@ -9,9 +9,9 @@
     "@stiligita/constants": "^1.0.0",
     "@stiligita/core": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
+    "@stiligita/keyframes": "^1.0.0",
     "@stiligita/store": "^1.0.0",
-    "@stiligita/templates": "^1.0.0",
-    "@stiligita/vue": "^1.0.0"
+    "@stiligita/templates": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

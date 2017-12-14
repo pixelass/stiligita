@@ -31,7 +31,7 @@ const assignStyled = (strings, args, props) => {
  *   The interpolations
  * @param {String} tag
  *   The tagName that will be used to render the final element
- * @param Object} defaultProps
+ * @param {Object} defaultProps
  *   Props that are allowed to be set by the component instance.
  * @return {Object}
  */

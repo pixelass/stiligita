@@ -8,9 +8,9 @@ import {render} from '@stiligita/dom'
  * same render method. To understand how props are used, look into the renderer
  * (e.g. @stiligita/react)
  *
- * @param {String}  tag
+ * @param {String} tag
  *   The tagName that should be used when rendering the final element
- * @param {Object}  props
+ * @param {Object} props
  *   An object that will be passed to the renderer.
  *   To understand how props are used, look into the renderer.
  * @return {*}  inherits the return of the assigned renderer

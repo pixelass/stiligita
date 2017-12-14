@@ -5,7 +5,7 @@ import {PROCESSOR, CREATE_COMPONENT} from '@stiligita/constants'
  *
  * @param {String|boolean} key
  *   The selector
- * @param {<type>} content
+ * @param {String} content
  * The style rules
  * @return {String}
  */

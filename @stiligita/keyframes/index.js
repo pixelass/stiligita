@@ -6,7 +6,7 @@ import {templateWithVars} from '@stiligita/templates'
  * Simple keyframe helper. Creates kayframes, writes them to the store and
  * returns its name as id
  *
- * @param {Array strings
+ * @param {Array} strings
  *   everything that is not an interpolation
  * @param {Array} args
  *   The interpolations

@@ -8,7 +8,7 @@
     "@stiligita/constants": "^1.0.0",
     "@stiligita/core": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
-    "@stiligita/react": "^1.0.0",
+    "@stiligita/keyframes": "^1.0.0",
     "@stiligita/store": "^1.0.0",
     "@stiligita/stylesheets": "^1.0.0",
     "@stiligita/templates": "^1.0.0",

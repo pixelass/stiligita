@@ -1,0 +1,9 @@
+{
+  "name": "@stiligita/keyframes",
+  "version": "1.0.0",
+  "dependencies": {
+    "@stiligita/hash-code": "^1.0.0",
+    "@stiligita/store": "^1.0.0",
+    "@stiligita/templates": "^1.0.0"
+  }
+}

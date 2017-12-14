@@ -4,7 +4,7 @@ import {ensureTruthy} from '@stiligita/utils'
  * Creates CSS from a list of strings and interpolations.
  * If interpolations are functions they may be called with `props`
  *
- * @param {Array strings
+ * @param {Array} strings
  *   everything that is not an interpolation
  * @param {Array} args
  *   The interpolations
@@ -27,7 +27,7 @@ export const templateWithProps = (strings, args, props = {}) => strings.map((str
 /**
  * Creates CSS from a list of strings and interpolations.
  *
- * @param {Array strings
+ * @param {Array} strings
  *   everything that is not an interpolation
  * @param {Array} args
  *   The interpolations

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Stylis from 'stylis'
 import styled from '@stiligita/core'
-import {keyframes} from '@stiligita/stylesheets'
-import renderVue from '@stiligita/vue'
+import keyframes from '@stiligita/keyframes'
 import {PROCESSOR} from '@stiligita/constants'
+import renderVue from '../'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR

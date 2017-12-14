@@ -9,7 +9,7 @@ export const isListener = onEvent => {
  *
  * @param {*} input
  *   The input
- * @param {(Array|string)} reject
+ * @param {Array} reject
  *   A list of items that will be rejected if they match
  * @return {boolean} True if truthy, False otherwise.
  */
@@ -50,7 +50,7 @@ export const ensureTruthy = (input, fallback = '', reject = [undefined, null, fa
 export const filterObject = obj => Object.keys(obj)
   .filter(key => isTruthy(obj[key]))
   .map(prop => ({[prop]: obj[prop]}))
-  .reduce((a, b) => ({...a, ...b}), {})
+  .reduce((a, b) => Object.assign({}, a, b), {})
 
 /**
  * Claens an object by a list of removals
@@ -64,5 +64,5 @@ export const filterObject = obj => Object.keys(obj)
 export const cleanObject = (obj, removals) => Object.keys(obj)
   .filter(key => isTruthy(key, removals))
   .map(prop => ({[prop]: obj[prop]}))
-  .reduce((a, b) => ({...a, ...b}), {})
+  .reduce((a, b) => Object.assign({}, a, b), {})
 

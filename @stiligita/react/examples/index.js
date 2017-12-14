@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import Stylis from 'stylis'
 import styled from '@stiligita/core'
-import {keyframes} from '@stiligita/stylesheets'
-import renderReact from '@stiligita/react'
+import keyframes from '@stiligita/keyframes'
 import {PROCESSOR} from '@stiligita/constants'
+import renderReact from '../'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
