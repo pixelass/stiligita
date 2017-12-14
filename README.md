@@ -19,189 +19,122 @@ Stiligita does not intend to provide all features of "styled-components" but you
 Need styled-componets in angular? Just add water (Angular) and stir (provide a wrapper).
 
 
-## Vanilla: It doesn't get easier than this.
+## Vanilla
+
+### It doesn't get easier than this.
 
 ```js
-import styled from '../src'
+import styled from '@stiligita/core'
 
-const APP = document.getElementById('app')
-
-const theme = {
-  primary: '#ff0080',
-  light: '#ccff66',
-  dark: '#008000',
-  lightText: '#fff',
-  darkText: '#000'
-}
-
-const Wrapper = styled.div`
-  background: ${theme.light};
-  color: ${theme.darkText};
-  display: grid;
-  grid-template-rows: 100px auto 100px;
-  grid-template-areas: "header" "main" "footer";
-  min-height: calc(100vh - 1em);
+const Button = styled.button`
+  background: black;
+  color: white;
 `
-
-const Header = styled.header`
-  grid-area: header;
-  background: ${theme.dark};
-  color: ${theme.lightText};
-`
-
-APP.appendChild(Wrapper(Header('Stiligita')))
-
 ```
 
-## Adding React
+## `Stiligita.use()`
+
+### Adding React
 
 Stiligita allows you to choose a RenderEngine.
 
-```jsx
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import Stylis from 'stylis'
-import styled, {keyframes} from 'stiligita'
-import renderReact from 'stiligita/lib/stiligita-react'
-import {PROCESSOR} from 'stiligita/lib/constants'
+```js
+import styled from '@stiligita/core'
+import react from '@stiligita/react'
 
-const stylis = new Stylis({keyframe: false})
-stylis.stiligita = PROCESSOR
-
-styled
-  .use(renderReact)
-  .use(stylis)
-
-const spin = keyframes`to {transform: rotate(360deg);}`
-
-const theme = {
-  primary: '#ff0080',
-  light: '#ccff66',
-  dark: '#008000',
-  lightText: '#fff',
-  darkText: '#000'
-}
-
-const Wrapper = styled.div`
-  background: ${theme.light};
-  color: ${theme.darkText};
-  display: grid;
-  grid-template-rows: 100px auto 100px;
-  grid-template-areas: "header" "main" "footer";
-  min-height: calc(100vh - 1em);
-`
-
-const Header = styled.header`
-  grid-area: header;
-  background: ${theme.dark};
-  color: ${theme.lightText};
-`
-
-const Footer = styled.footer`
-  grid-area: footer;
-  background: ${theme.dark};
-  color: ${theme.lightText};
-`
-
-const Spinner = styled.span`
-  position: relative;
-  display: inline-block;
-  animation: ${spin} 2s linear infinite;
-  animation-direction: ${_ => _.active ? 'normal' : 'reverse'};
-`
-
-const Title = styled.h1`
-  user-select: none;
-  font-family: 'Comic Sans MS';
-  font-size: 4em;
-  margin: 0;
-  text-align: center;
-`
+styled.use(react)
 
 const Button = styled.button`
-  background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
-  color: black;
-  padding: 1em 2em;
-  line-height: 1;
-  font-size: 1em;
-  border: 0;
-  border-radius: 1.5em;
-
-  &:hover {
-    background: ${props => props.primary ? '#66ccff' : '#999999'};
-  }
+  background: black;
+  color: white;
 `
-
-class App extends Component {
-  constructor(){
-    super()
-    this.state = {}
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick(e) {
-    this.setState({
-      active: !this.state.active
-    })
-  }
-  render() {
-    return (
-      <Wrapper>
-        <Header data-foo="I should work">
-          <Title aria-label="Click me to change the state">
-            <Spinner active={this.state.active}>🔫</Spinner>
-            Stiligita
-            <Spinner active={this.state.active}>🌀</Spinner>
-          </Title>
-        </Header>
-        <main>
-          <Button onClick={this.handleClick} primary>Switch direction</Button>
-          <Button onClick={this.handleClick}>Switch direction</Button>
-        </main>
-        <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
-      </Wrapper>
-    )
-  }
-}
-
-render(<App/>, document.getElementById('app'))
 ```
 
-## Nested css & prefixing
+
+### Adding Vue
+
+```js
+import styled from '@stiligita/core'
+import vue from '@stiligita/vue'
+
+styled.use(vue)
+
+const Button = styled.button`
+  background: black;
+  color: white;
+`
+```
+
+### Adding Angular
+
+```js
+import styled from '@stiligita/core'
+import {createDirective, createComponent} from '@stiligita/angular'
+
+styled.use(createDirective)
+// <button foo-button/>I am Foo</button>
+// Or
+// styled.use(createComponent)
+// <foo-button/>I am Foo</foo-button>
+
+const Button = styled('button', {
+  selector: 'foo-button'
+})`
+  background: black;
+  color: white;
+`
+```
+
+### Nested css & prefixing
 
 Stiligita allows you to choose a cssProcessor.
 
 ```js
 import Stylis from 'stylis'
-import styled from 'stiligita'
-import {PROCESSOR} from 'stiligita/lib/constants'
+import styled from '@stiligita/core'
+import keyframes from '@stiligita/keyframes'
+import {PROCESSOR} from '@stiligita/constants'
+
+// Keyframe needs to be set to false to prevent
+// scoping the keyframe name
+const stylis = new Stylis({keyframe: false})
+// stiligita needs to know how to interpret this transpiler
+stylis.stiligita = PROCESSOR
+
+styled
+  .use(stylis)
+
+const spin = keyframes`to{transform: rotate(360deg)}`
+
+const Button = styled.button`
+  background: grey;
+  color: white;
+
+  &:hover {
+    animation: ${spin} 1s infinite;
+    background: black;
+  }
+`
+```
+
+### Sharable configuration
+
+If you want to reuse a preconfiguration you might want to create a module.
+You can still add scoped modifications later on.
+
+```js
+import Stylis from 'stylis'
+import styled from '@stiligita/core'
+import keyframes from '@stiligita/keyframes'
+import {PROCESSOR} from '@stiligita/constants'
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
 
 styled
   .use(stylis)
-```
 
-**The API changes from**
-
-```js
-const Button = styled.button`
-  background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
-  color: white;
-`
-```
-
-**to**
-
-```js
-const Button = styled.button`
-  background: ${props => props.primary ? '#66ffff' : '#b3b3b3'};
-  color: white;
-
-  &:hover {
-    background: ${props => props.primary ? '#66ccff' : '#999999'};
-  }
-`
+export default styled
 ```
 
 © Copyright 2017 | Gregor Adams
