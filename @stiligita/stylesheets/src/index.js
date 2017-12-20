@@ -1,7 +1,6 @@
 import {NAMESPACE} from '@stiligita/constants'
 import {render} from '@stiligita/dom'
-
-export const minifyCSS = css => css.replace(/\s+/g, ' ').replace(/\s?([:;,{}()])\s?/g, '$1').replace(/;\}/g, '}')
+import minify from './minify'
 
 /**
  * Sends style rules and keyframes into a processor and returns the result
@@ -13,7 +12,7 @@ export const minifyCSS = css => css.replace(/\s+/g, ' ').replace(/\s?([:;,{}()])
  * @return {String} A proccesed css string
  */
 export default function (rules, keyframes) {
-  return minifyCSS(Object.keys(rules)
+  return minify(Object.keys(rules)
     .map(key =>
       render.processCSS(`[data-${NAMESPACE}="${key}"]`, `${rules[key]}`))
     .concat(Object.keys(keyframes).map(key =>
