@@ -2,7 +2,13 @@
   "destination": "./docs/api",
   "source": "./@stiligita/",
   "includes": ["\\.js$"],
-  "excludes": ["__tests__", "examples", "webpack.*.*js"],
+  "excludes": [
+    "lib",
+    "dist",
+    "node_modules",
+    "__tests__",
+    "examples",
+    "webpack.*.*js"],
   "plugins": [{
     "name": "esdoc-ecmascript-proposal-plugin",
     "option": {
