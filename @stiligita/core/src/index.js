@@ -1,5 +1,6 @@
 import domElements from '@stiligita/dom-elements'
 import {render} from '@stiligita/dom'
+import {ATTRIBUTES, CONFIGURATION} from '@stiligita/constants'
 
 /**
  * Styled can be called as a function to allow setting properties.
@@ -31,6 +32,12 @@ styled.use = plugin => render.use(plugin)
 // Add literals for each DOM element
 domElements.forEach(tag => {
   styled[tag] = (strings, ...args) => render.createComponent(strings, args, tag)
+  styled[tag].attrs = attrs =>
+    (strings, ...args) =>
+      render.createComponent(strings, args, tag, Object.assign({}, attrs, {[ATTRIBUTES]: true}))
+  styled[tag].config = config =>
+    (strings, ...args) =>
+      render.createComponent(strings, args, tag, Object.assign({}, config, {[CONFIGURATION]: true}))
 })
 
 export default styled

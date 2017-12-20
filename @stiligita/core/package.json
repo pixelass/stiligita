@@ -1,8 +1,21 @@
 {
   "name": "@stiligita/core",
   "version": "1.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files"
+  },
   "dependencies": {
+    "@stiligita/constants": "^1.0.0",
     "@stiligita/dom-elements": "^1.0.0",
     "@stiligita/dom": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.1"
   }
 }

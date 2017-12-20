@@ -1,19 +1,19 @@
 {
   "name": "@stiligita/vue",
   "version": "1.0.0",
+  "main": "lib/index.js",
   "scripts": {
-    "babel": "babel examples/index.js > examples/index.trans.js",
+    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
     "watch": "webpack-dev-server"
   },
   "dependencies": {
     "@stiligita/constants": "^1.0.0",
-    "@stiligita/core": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
-    "@stiligita/keyframes": "^1.0.0",
     "@stiligita/store": "^1.0.0",
     "@stiligita/templates": "^1.0.0"
   },
   "devDependencies": {
+    "@stiligita/keyframes": "^1.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -22,8 +22,7 @@
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "lerna": "^2.5.1",
-    "@stiligita/stylesheets": "^1.0.0",
+    "cross-env": "^5.1.1",
     "stylis": "^3.4.5",
     "vue": "^2.5.9",
     "webpack": "^3.10.0",
