@@ -13,5 +13,17 @@
       }
     }]
   ],
-  "plugins": ["transform-vue-jsx"]
+  "plugins": ["transform-vue-jsx"],
+  "env": {
+    "production": {
+      "presets": [
+        ["minify",
+          {
+            "mangle": false,
+            "evaluate": false
+          }
+        ]
+      ]
+    }
+  }
 }

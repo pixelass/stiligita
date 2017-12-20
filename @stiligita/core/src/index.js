@@ -7,7 +7,7 @@ import {ATTRIBUTES, CONFIGURATION} from '@stiligita/constants'
  * This can be used in different ways to create APIs for several renderers.
  * If called as a function the props will be added as an argument to the
  * same render method. To understand how props are used, look into the renderer
- * (e.g. @stiligita/react)
+ * {@link createReactComponent}
  *
  * @param {String} tag
  *   The tagName that should be used when rendering the final element
@@ -20,7 +20,7 @@ function styled(tag, props) {
   return (strings, ...args) => {
     // The render.createComponent calls an assigned renderer
     // To understand what this call does you might need to look into the
-    // renderer (e.g. @stiligita/react)
+    // renderer {@link createReactComponent}
     return render.createComponent(strings, args, tag, props)
   }
 }

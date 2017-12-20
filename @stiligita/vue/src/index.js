@@ -35,7 +35,7 @@ const assignStyled = (strings, args, props) => {
  *   Props that are allowed to be set by the component instance.
  * @return {Object}
  */
-const createComponent = (strings, args, tag, defaultProps = {}) => {
+const createVueComponent = (strings, args, tag, defaultProps = {}) => {
   return ({
     props: {...defaultProps},
     render(h) {
@@ -64,6 +64,6 @@ const createComponent = (strings, args, tag, defaultProps = {}) => {
   })
 }
 
-createComponent.stiligita = CREATE_COMPONENT
+createVueComponent.stiligita = CREATE_COMPONENT
 
-export default createComponent
+export default createVueComponent

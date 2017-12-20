@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files"
+    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
+    "test": "bundlesize"
   },
+  "bundlesize": [
+    {
+      "path": "./lib/*.js",
+      "maxSize": "1 kB"
+    }
+  ],
   "dependencies": {
     "@stiligita/hash-code": "^1.0.0",
     "@stiligita/store": "^1.0.0",
@@ -16,6 +23,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
+    "bundlesize": "^0.15.3",
     "cross-env": "^5.1.1"
   }
 }

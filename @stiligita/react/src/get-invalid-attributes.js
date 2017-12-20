@@ -1,5 +1,6 @@
-import {isListener, isTruthy} from '@stiligita/utils'
+import {isTruthy} from '@stiligita/utils'
 import {htmlAttributes} from './dom-elements'
+import {isListener} from './utils'
 
 export default function (props) {
   const elementAttributes = htmlAttributes[props.tag] || []

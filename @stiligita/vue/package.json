@@ -4,8 +4,15 @@
   "main": "lib/index.js",
   "scripts": {
     "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
-    "watch": "webpack-dev-server"
+    "watch": "webpack-dev-server",
+    "test": "bundlesize"
   },
+  "bundlesize": [
+    {
+      "path": "./lib/*.js",
+      "maxSize": "1 kB"
+    }
+  ],
   "dependencies": {
     "@stiligita/constants": "^1.0.0",
     "@stiligita/hash-code": "^1.0.0",
@@ -22,6 +29,7 @@
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
+    "bundlesize": "^0.15.3",
     "cross-env": "^5.1.1",
     "stylis": "^3.4.5",
     "vue": "^2.5.9",

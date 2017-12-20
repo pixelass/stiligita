@@ -1,8 +1,9 @@
 {
-  "presets": ["stage-2", [
-    "env", {
+  "presets": [
+    "stage-2",
+    ["env", {
       "builtIns": false,
-      "modules": "umd",
+      "modules": "commonjs",
       "targets": {
         "browsers": [
           "last 2 chrome versions",
@@ -12,5 +13,17 @@
         ]
       }
     }]
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        ["minify",
+          {
+            "mangle": false,
+            "evaluate": false
+          }
+        ]
+      ]
+    }
+  }
 }

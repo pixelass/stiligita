@@ -12,5 +12,18 @@
         ]
       }
     }]
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        ["minify",
+          {
+            "mangle": false,
+            "evaluate": false
+          }
+        ]
+      ]
+    }
+  }
 }
+

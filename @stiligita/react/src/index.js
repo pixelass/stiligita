@@ -13,7 +13,7 @@ export const Element = props =>
   })
 Element.displayName = 'Stiligita'
 
-const createComponent = (strings, args, tag, defaultProps) => {
+const createReactComponent = (strings, args, tag, defaultProps) => {
   const Component = props => {
     props = {...defaultProps, ...props}
     const css = templateWithProps(strings, args, props)
@@ -25,6 +25,6 @@ const createComponent = (strings, args, tag, defaultProps) => {
   return Component
 }
 
-createComponent.stiligita = CREATE_COMPONENT
+createReactComponent.stiligita = CREATE_COMPONENT
 
-export default createComponent
+export default createReactComponent

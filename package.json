@@ -9,6 +9,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
+    "babel": "lerna run babel",
+    "pretest": "yarn babel",
+    "test": "lerna run test",
     "setup": "rm -rf node_modules && yarn && lerna clean && lerna bootstrap",
     "docs": "esdoc",
     "lint": "xo './@stiligita/**/*.js'"
@@ -47,7 +50,9 @@
   },
   "devDependencies": {
     "esdoc": "^1.0.4",
+    "esdoc-brand-plugin": "^1.0.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "esdoc-importpath-plugin": "^1.0.1",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.13.1",
     "eslint-config-xo-react": "^0.14.0",
