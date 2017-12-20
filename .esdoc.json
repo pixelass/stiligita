@@ -2,19 +2,42 @@
   "destination": "./docs/api",
   "source": "./@stiligita/",
   "includes": ["\\.js$"],
+  "package": "./package.json",
+  "index": "./README.md",
   "excludes": [
     "lib",
     "dist",
     "node_modules",
     "__tests__",
     "examples",
-    "webpack.*.*js"],
+    "webpack.*.*js$"],
   "plugins": [{
+    "name": "esdoc-standard-plugin"
+  }, {
     "name": "esdoc-ecmascript-proposal-plugin",
     "option": {
       "all": true
     }
-  }, {
-    "name": "esdoc-standard-plugin"
-  }]
+  },
+  {
+    "name": "esdoc-importpath-plugin",
+    "option": {
+      "stripPackageName": true,
+      "replaces": [
+        {"from": "src/index.js", "to": ""},
+        {"from": "/$", "to": ""},
+        {"from": "src/", "to": "lib/"}
+      ]
+    }
+  },
+  {
+      "name": "esdoc-brand-plugin",
+      "option": {
+        "title": "Stiligita",
+        "description": "Esperanto for styled components",
+        "repository": "https://github.com/pixelass/stiligita",
+        "site": "pixelass.github.io/stiligita",
+        "author": "https://github.com/pixelass"
+      }
+    }]
 }
