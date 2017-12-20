@@ -2,7 +2,7 @@ import {store} from '@stiligita/store'
 import hashCode from '@stiligita/hash-code';
 import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants';
 import {templateWithProps} from '@stiligita/templates'
-import {Component, Directive, ElementRef, Input} from '@angular/core';
+import {Component, Directive} from '@angular/core';
 
 
 const assignStyled = (strings, args, props = {}) => {
@@ -14,7 +14,11 @@ const assignStyled = (strings, args, props = {}) => {
 const createAngularComponent = (tag, hash, {selector}) => {
   @Component({
     selector,
-    template: `<${tag} data-${NAMESPACE}="${hash}"><ng-content></ng-content></${tag}>`
+    template: `
+      <${tag} data-${NAMESPACE}="${hash}">
+        <ng-content></ng-content>
+      </${tag}>
+    `
   })
   class StyledComponent {}
   return StyledComponent
@@ -22,27 +26,27 @@ const createAngularComponent = (tag, hash, {selector}) => {
 
 const createAngularDirective = (tag, hash, {selector}) => {
   @Directive({
-    selector: `[${selector}]`
+    selector: `[${selector}]`,
+    host: {[`[attr.data-${NAMESPACE}]`]: 'styleHash'}
   })
   class StyledDirective {
-    constructor(el: ElementRef) {
-      el.nativeElement.setAttribute(`data-${NAMESPACE}`, hash);
-    }
-
+    styleHash = hash
   }
   return StyledDirective
 }
 
-function createComponent (strings, args, tag, defaultProps) {
+function createWithFunction (fn, {strings, args, tag, defaultProps}) {
   const {css, hash} = assignStyled(strings, args, defaultProps)
   store.addRules({[hash]: css})
-  return createAngularComponent(tag, hash, defaultProps)
+  return fn(tag, hash, defaultProps)
+}
+
+function createComponent (strings, args, tag, defaultProps) {
+  return createWithFunction(createAngularComponent, {strings, args, tag, defaultProps})
 }
 
 function createDirective (strings, args, tag, defaultProps) {
-  const {css, hash} = assignStyled(strings, args, defaultProps)
-  store.addRules({[hash]: css})
-  return createAngularDirective(tag, hash, defaultProps)
+  return createWithFunction(createAngularDirective, {strings, args, tag, defaultProps})
 }
 
 namespace createComponent {
