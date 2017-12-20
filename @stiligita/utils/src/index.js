@@ -1,9 +1,3 @@
-// @todo move to react?
-export const isListener = onEvent => {
-  const [o, n, Event] = onEvent
-  return o === 'o' && n === 'n' & Event === Event.toUpperCase()
-}
-
 /**
  * Determines if truthy.
  *
