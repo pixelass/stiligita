@@ -1,6 +1,6 @@
-export default function minifyCSS (css) {
+export default function (css) {
   return css
-    .replace(/\s+/g, ' ') // merge whitespaces
-    .replace(/\s?([:;,{}()])\s?/g, '$1') // remove extra whitespaces
-    .replace(/;\}/g, '}') // remove last semicolo in rule
+    .replace(/\s+/g, ' ') // Merge whitespaces
+    .replace(/\s?([:;,{}()])\s?/g, '$1') // Remove extra whitespaces
+    .replace(/;\}/g, '}') // Remove last semicolo in rule
 }

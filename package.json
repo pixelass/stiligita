@@ -12,6 +12,7 @@
     "babel": "lerna run babel",
     "babel:watch": "lerna run babel:watch --parallel",
     "pretest": "yarn babel",
+    "posttest": "yarn lint",
     "test": "lerna run test",
     "setup": "rm -rf node_modules && yarn && lerna clean && lerna bootstrap",
     "docs": "esdoc",
@@ -32,6 +33,7 @@
     "semicolon": false,
     "extends": "xo-react",
     "rules": {
+      "import/prefer-default-export": 0,
       "quote-props": 0,
       "react/react-in-jsx-scope": 0,
       "react/jsx-first-prop-new-line": [
