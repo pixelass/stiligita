@@ -1,0 +1,24 @@
+{
+  "destination": "../../docs/react",
+  "source": "./src",
+  "includes": ["\\.js$"],
+  "package": "./package.json",
+  "index": "./README.md",
+  "excludes": ["__tests__"],
+  "plugins": [{
+    "name": "esdoc-standard-plugin"
+  }, {
+    "name": "esdoc-ecmascript-proposal-plugin",
+    "option": {
+      "all": true
+    }
+  },
+  {
+    "name": "esdoc-importpath-plugin",
+    "option": {
+      "replaces": [
+        {"from": "src/", "to": "lib/"}
+      ]
+    }
+  }]
+}

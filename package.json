@@ -16,7 +16,7 @@
     "posttest": "yarn lint",
     "test": "lerna run test",
     "setup": "rm -rf node_modules && yarn && lerna clean && lerna bootstrap",
-    "docs": "esdoc",
+    "docs": "lerna run docs",
     "lint": "xo './@stiligita/**/*.js'",
     "watch": "lerna run watch"
   },
@@ -56,6 +56,7 @@
   "devDependencies": {
     "@commitlint/cli": "^5.2.5",
     "@commitlint/config-conventional": "^5.2.3",
+    "docsify-cli": "^4.1.12",
     "esdoc": "^1.0.4",
     "esdoc-brand-plugin": "^1.0.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",

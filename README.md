@@ -12,7 +12,7 @@ Inspired by [styled-components](https://github.com/styled-components/styled-comp
 | --------- | ------------ | ----------------- | --------------------- | --------------- | -----------| ---------- |
 | stiligita | streamlined  | stiligita         | stiligita             | stiligita       | stiligita  | stiligita  |
 |           | styled       | styled-components |                       |                 |            |            |
-|           | stylized     |                   | vue-styled-components | styled-elements |            |            |
+|           | stylized     |                   | vue-styled-components | styled-elements |            |            |   |
 
 
 Stiligita does not intend to provide all features of "styled-components" but you can build these features if you need them.  

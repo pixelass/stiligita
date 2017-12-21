@@ -6,6 +6,13 @@ import {templateWithProps} from '@stiligita/templates'
 import {store} from '@stiligita/store'
 import getInvalid from './get-invalid-attributes'
 
+/**
+ * Simple element creator for React.
+ * Adds stiligita speciffic data to the component.
+ *
+ * @param {<type>} props The properties
+ * @return {HTMLElment}
+ */
 export const Element = props =>
   createElement(props.tag, {
     ...cleanObject(props, getInvalid(props)),
@@ -13,6 +20,15 @@ export const Element = props =>
   })
 Element.displayName = 'Stiligita'
 
+/**
+ * Creates a react component.
+ *
+ * @param      {Array.<string>} strings The strings
+ * @param      {Array.<string|function>} args The arguments
+ * @param      {string} tag The tag
+ * @param      {object} defaultProps The default properties
+ * @return     {Element}
+ */
 const createReactComponent = (strings, args, tag, defaultProps) => {
   const Component = props => {
     props = {...defaultProps, ...props}

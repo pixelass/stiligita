@@ -5,6 +5,7 @@
   "scripts": {
     "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
     "babel:watch": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files -w -s",
+    "docs": "esdoc",
     "watch": "webpack-dev-server",
     "test": "bundlesize"
   },
