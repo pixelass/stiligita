@@ -10,11 +10,13 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "babel": "lerna run babel",
+    "babel:watch": "lerna run babel:watch --parallel",
     "pretest": "yarn babel",
     "test": "lerna run test",
     "setup": "rm -rf node_modules && yarn && lerna clean && lerna bootstrap",
     "docs": "esdoc",
-    "lint": "xo './@stiligita/**/*.js'"
+    "lint": "xo './@stiligita/**/*.js'",
+    "watch": "lerna run watch"
   },
   "browserslist": [
     "last 2 chrome versions",
