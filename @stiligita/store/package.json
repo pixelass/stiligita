@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "browser": "lib/index.js",
   "main": "lib/server.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
     "babel:watch": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files -w -s",
