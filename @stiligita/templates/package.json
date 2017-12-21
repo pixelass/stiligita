@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/templates",
-  "version": "1.0.0",
+  "version": "0.0.1-0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
     }
   ],
   "dependencies": {
-    "@stiligita/utils": "^1.0.0"
+    "@stiligita/utils": "^0.0.1-0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
