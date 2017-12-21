@@ -11,6 +11,7 @@
     "clean": "lerna clean",
     "babel": "lerna run babel",
     "babel:watch": "lerna run babel:watch --parallel",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "pretest": "yarn babel",
     "posttest": "yarn lint",
     "test": "lerna run test",
@@ -53,6 +54,8 @@
     "env": "browser"
   },
   "devDependencies": {
+    "@commitlint/cli": "^5.2.5",
+    "@commitlint/config-conventional": "^5.2.3",
     "esdoc": "^1.0.4",
     "esdoc-brand-plugin": "^1.0.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
@@ -61,6 +64,7 @@
     "eslint": "^4.13.1",
     "eslint-config-xo-react": "^0.14.0",
     "eslint-plugin-react": "^7.5.1",
+    "husky": "^0.14.3",
     "lerna": "^2.5.1",
     "xo": "^0.18.2"
   }
