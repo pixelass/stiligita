@@ -7,19 +7,24 @@ class Store {
     this.__STYLES__ = {}
     this.__KEYFRAMES__ = {}
     this.__KEYS__ = []
-    this.__STYLE_TAG__ = document.createElement('style')
-    document.head.appendChild(this.__STYLE_TAG__)
+    this.__STYLE_TAG__ = null
+    this.getName = this.getName.bind(this)
   }
 
   diff(key) {
     if (isFalsy(key, this.__KEYS__)) {
-      return Promise.resolve(false)
+      return false
     }
-    return Promise.resolve(true)
+    return true
   }
 
   update() {
-    this.__STYLE_TAG__.innerHTML = createStyleBlock(this.__STYLES__, this.__KEYFRAMES__)
+    this.__STYLE_TAG__ = createStyleBlock(this.__STYLES__, this.__KEYFRAMES__)
+    return Promise.resolve()
+  }
+
+  getStyles() {
+    return this.__STYLE_TAG__
   }
 
   getName(hash) {
@@ -28,18 +33,16 @@ class Store {
 
   addStyles(obj, prop) {
     const [key] = Object.keys(obj)
-    this.diff(key).then(undef => {
-      if (undef) {
-        this.__KEYS__.push(key)
-        const newObj = {
-          [this.getName(key)]: obj[key]
-        }
-        this[prop] = {...this[prop], ...newObj}
-        this.update()
+    if (this.diff(key)) {
+      this.__KEYS__.push(key)
+      const newObj = {
+        [this.getName(key)]: obj[key]
       }
-      // Styles have already been written
-      // no need for operations
-    })
+      this[prop] = {...this[prop], ...newObj}
+      this.update()
+    }
+    // Styles have already been written
+    // no need for operations
   }
 
   addRules(obj) {

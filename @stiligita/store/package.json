@@ -1,7 +1,8 @@
 {
   "name": "@stiligita/store",
   "version": "1.0.0",
-  "main": "lib/index.js",
+  "browser": "lib/index.js",
+  "main": "lib/server.js",
   "scripts": {
     "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
     "babel:watch": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files -w -s",
@@ -14,8 +15,9 @@
     }
   ],
   "dependencies": {
-    "@stiligita/utils": "^1.0.0",
-    "@stiligita/stylesheets": "^1.0.0"
+    "@stiligita/dom": "^1.0.0",
+    "@stiligita/stylesheets": "^1.0.0",
+    "@stiligita/utils": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

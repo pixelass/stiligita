@@ -1,12 +1,18 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import Stylis from 'stylis'
-import styled from '@stiligita/core'
-import {PROCESSOR} from '@stiligita/constants'
-import react from '../lib'
+const React = require('react')
+const {renderToStaticMarkup} = require('react-dom/server')
+const styled = require('@stiligita/core').default
+const store = require('@stiligita/store').default
+const {PROCESSOR, GET_NAME} = require('@stiligita/constants')
+const Abcq = require('abcq')
+const react = require('../lib').default
 
-const stylis = new Stylis({keyframe: false})
-stylis.stiligita = PROCESSOR
+const shortid = new Abcq()
+
+class ServerStyleSheet {
+  getStyleTag() {
+    return `<style>${store.getStyles()}</style>`
+  }
+}
 
 const safelyAlphanumeric = (a, b) => {
   const propA = a.split(':')[0]
@@ -34,27 +40,19 @@ const sortCSSProps = rules => {
   .join(';')
   return rules
 }
-
 sortCSSProps.stiligita = PROCESSOR
+
+const shortId = (key, keys) => shortid.encode(keys.indexOf(key))
+shortId.stiligita = GET_NAME
 
 styled
   .before(sortCSSProps)
   .use(react)
-
-const theme = {
-  primary: '#0080ff',
-  light: '#66ccff',
-  dark: '#004080',
-  secondary: '#ff0080',
-  secondaryLight: '#ff6fcf',
-  secondaryDark: '#800040',
-  lightText: '#fff',
-  darkText: '#000'
-}
+  .use(shortId)
 
 const Wrapper = styled.div`
   background: #fff;
-  color: ${theme.darkText};
+  color: #000;
   display: grid;
   grid-template-rows: 100px 1fr 100px;
   grid-template-areas: "header" "main" "footer";
@@ -79,24 +77,11 @@ const SecondTitle = styled.h2`
   user-select: none;
 `
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {}
-    this.handleClick = this.handleClick.bind(this)
-  }
-  render() {
-    return (
-      <Wrapper>
-        <PageTitle>
-          Reusing selectors!
-        </PageTitle>
-        <SecondTitle>
-          Reusing selectors!
-        </SecondTitle>
-      </Wrapper>
-    )
-  }
-}
+const staticApp = () => React.createElement(Wrapper, null,
+  React.createElement(PageTitle, null, 'Reusing selectors!'),
+  React.createElement(SecondTitle, null, 'Reusing selectors!'))
 
-render(<App/>, document.getElementById('app'))
+const markup = renderToStaticMarkup(staticApp())
+const sheet = new ServerStyleSheet()
+console.log(markup)
+console.log(sheet.getStyleTag())
