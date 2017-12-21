@@ -1,4 +1,4 @@
-import {isTruthy} from '@stiligita/utils'
+import {isFalsy} from '@stiligita/utils'
 import createStyleBlock from '@stiligita/stylesheets'
 
 class Store {
@@ -11,10 +11,10 @@ class Store {
   }
 
   diff(key) {
-    if (isTruthy(key, this.__KEYS__)) {
-      return Promise.resolve()
+    if (isFalsy(key, this.__KEYS__)) {
+      return Promise.resolve(false)
     }
-    return Promise.reject()
+    return Promise.resolve(true)
   }
 
   update() {
@@ -23,13 +23,14 @@ class Store {
 
   addStyles(obj, prop) {
     const [key] = Object.keys(obj)
-    this.diff(key).then(() => {
-      // Original: {...this[prop], ...obj}
-      this[prop] = Object.assign({}, this[prop], obj)
-      this.__KEYS__.push(key)
-      this.update()
-    }).catch(err => {
-      console.error(err)
+    this.diff(key).then(undef => {
+      if (undef) {
+        this[prop] = {...this[prop], ...obj}
+        this.__KEYS__.push(key)
+        this.update()
+      }
+      // Styles have already been written
+      // no need for operations
     })
   }
 
