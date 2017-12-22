@@ -9,31 +9,31 @@ styled.use(react)
 const Wrapper = styled.div`
   background: #fff;
   color: #000;
-  display: grid;
-  grid-template-rows: 100px 1fr 100px;
-  grid-template-areas: "header" "main" "footer";
-  min-height: calc(100vh - 1em);
 `
 
 const PageTitle = styled.h1`
   user-select: none;
-  font-family: Arial, Verdana, sans-serif;
-  font-weight: lighter;
   font-size: 4em;
   margin: 0;
-  text-align: center;
 `
 
 const SecondTitle = styled.h2`
   margin: 0;
-  font-family: Arial, Verdana, sans-serif;
-  font-weight: lighter;
   font-size: 4em;
-  text-align: center;
   user-select: none;
 `
 
+const Foo = styled.span`
+  margin: 0;
+`
+
+const Bar = styled(Foo)`
+  padding: 0;
+`
+
 const staticApp = () => React.createElement(Wrapper, null,
+  React.createElement(Foo, null, 'Foo!'),
+  React.createElement(Bar, null, 'Foo + Bar!'),
   React.createElement(PageTitle, null, 'Reusing selectors!'),
   React.createElement(SecondTitle, null, 'Reusing selectors!'))
 
