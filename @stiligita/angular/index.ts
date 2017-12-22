@@ -1,9 +1,9 @@
+import {render} from '@stiligita/dom'
 import {store} from '@stiligita/store'
 import hashCode from '@stiligita/hash-code';
-import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants';
+import {NAMESPACE, CREATE_COMPONENT, CREATE_SELECTOR} from '@stiligita/constants';
 import {templateWithProps} from '@stiligita/templates'
 import {Component, Directive} from '@angular/core';
-
 
 const assignStyled = (strings, args, props = {}) => {
   const css = templateWithProps(strings, args, props)
@@ -12,10 +12,12 @@ const assignStyled = (strings, args, props = {}) => {
 }
 
 const createAngularComponent = (tag, hash, {selector}) => {
+  const pair = render[CREATE_SELECTOR](hash, 'html');
+  const key = Object.keys(pair)[0];
   @Component({
     selector,
     template: `
-      <${tag} data-${NAMESPACE}="${hash}">
+      <${tag} ${key}="${pair[key]}">
         <ng-content></ng-content>
       </${tag}>
     `
@@ -25,9 +27,10 @@ const createAngularComponent = (tag, hash, {selector}) => {
 }
 
 const createAngularDirective = (tag, hash, {selector}) => {
+  const key = Object.keys(render[CREATE_SELECTOR](hash, 'html'))[0];
   @Directive({
     selector: `[${selector}]`,
-    host: {[`[attr.data-${NAMESPACE}]`]: 'styleHash'}
+    host: {[`[attr.${key}]`]: 'styleHash'}
   })
   class StyledDirective {
     styleHash = hash

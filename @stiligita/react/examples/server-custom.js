@@ -2,7 +2,7 @@ const React = require('react')
 const {renderToStaticMarkup} = require('react-dom/server')
 const styled = require('@stiligita/core').default
 const {ServerStyleSheet} = require('@stiligita/stylesheets')
-const {PROCESSOR, GET_NAME} = require('@stiligita/constants')
+const {PROCESSOR, GET_NAME, CREATE_SELECTOR} = require('@stiligita/constants')
 const Abcq = require('abcq')
 const react = require('../lib').default
 
@@ -39,10 +39,22 @@ sortCSSProps.stiligita = PROCESSOR
 const shortId = (key, keys) => shortid.encode(keys.indexOf(key))
 shortId.stiligita = GET_NAME
 
+const createClassName = (hash, mode) => {
+    switch (mode) {
+        case 'css':
+            return `.${hash}`
+        case 'html':
+            return {className: hash}
+    }
+}
+
+createClassName.stiligita = CREATE_SELECTOR;
+
 styled
   .before(sortCSSProps)
   .use(react)
   .use(shortId)
+  .use(createClassName)
 
 const Wrapper = styled.div`
   background: #fff;

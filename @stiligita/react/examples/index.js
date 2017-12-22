@@ -6,9 +6,10 @@ import keyframes from '@stiligita/keyframes'
 import {PROCESSOR, GET_NAME} from '@stiligita/constants'
 import Abcq from 'abcq'
 import react from '../lib'
+
 const shortid = new Abcq()
 const shortId = (key, keys) => {
-  // console.log(key, keys)
+  // A console.log(key, keys)
   return shortid.encode(keys.indexOf(key))
 }
 shortId.stiligita = GET_NAME

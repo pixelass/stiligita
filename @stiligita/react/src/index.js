@@ -1,16 +1,16 @@
 import {createElement} from 'react'
+import {render} from '@stiligita/dom'
 import {cleanObject} from '@stiligita/utils'
 import hashCode from '@stiligita/hash-code'
-import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants'
+import {CREATE_COMPONENT, CREATE_SELECTOR} from '@stiligita/constants'
 import {templateWithProps} from '@stiligita/templates'
 import {store} from '@stiligita/store'
-import {render} from '@stiligita/dom'
 import getInvalid from './get-invalid-attributes'
 
 export const Element = props =>
   createElement(props.tag, {
     ...cleanObject(props, getInvalid(props)),
-    [`data-${NAMESPACE}`]: props.hash
+    ...render[CREATE_SELECTOR](props.hash, 'html')
   })
 Element.displayName = 'Stiligita'
 

@@ -1,5 +1,6 @@
 import hashCode from '@stiligita/hash-code'
-import {NAMESPACE, CREATE_COMPONENT} from '@stiligita/constants'
+import {CREATE_COMPONENT, CREATE_SELECTOR} from '@stiligita/constants'
+import {render} from '@stiligita/dom'
 import {templateWithProps} from '@stiligita/templates'
 import {store} from '@stiligita/store'
 
@@ -54,7 +55,7 @@ const createVueComponent = (strings, args, tag, defaultProps = {}) => {
         },
         // Anything custom (as data-*) can be added here
         attrs: {
-          [`data-${NAMESPACE}`]: hash
+          ...render[CREATE_SELECTOR](hash, 'html')
         }
       },
       // Render the default slot

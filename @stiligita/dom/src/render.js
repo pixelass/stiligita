@@ -1,4 +1,4 @@
-import {GET_NAME, PRE_PROCESSOR, PROCESSOR, CREATE_COMPONENT} from '@stiligita/constants'
+import {GET_NAME, PRE_PROCESSOR, PROCESSOR, CREATE_COMPONENT, CREATE_SELECTOR} from '@stiligita/constants'
 
 /**
  * A simple CSS processor that simply wraps rules in a selector if present
@@ -16,6 +16,22 @@ const simpleGetName = name => name
 const simpleCreateComponent = () => () => {}
 
 /**
+ * Default createSelector implementation emitting [data-styled="id"] selectors
+ * @param {String} id
+ * @param {String} mode
+ */
+const simpleCreateSelector = (id, mode) => {
+  switch (mode) {
+    case 'css':
+      return `[data-styled="${id}"]`
+    case 'html':
+      return {'data-styled': id}
+    default:
+      throw new TypeError(`Unknown createSelector case "${mode}". Use "css" or "html"`)
+  }
+}
+
+/**
  * Private render class. Hnadles the entire rendering logic.
  * Provides a plugin mechanism that allows to set different processors or
  * renderers
@@ -29,6 +45,7 @@ class Renderer {
     this[PROCESSOR] = simpleProcessor
     this[GET_NAME] = simpleGetName
     this[CREATE_COMPONENT] = simpleCreateComponent
+    this[CREATE_SELECTOR] = simpleCreateSelector
     this.processCSS = this.processCSS.bind(this)
     this.createComponent = this.createComponent.bind(this)
     this.use = this.use.bind(this)

@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "@stiligita/constants": "^0.0.1-1",
+    "@stiligita/dom": "^0.0.1-1",
     "@stiligita/hash-code": "^0.0.1-1",
     "@stiligita/store": "^0.0.1-5",
     "@stiligita/templates": "^0.0.1-1"

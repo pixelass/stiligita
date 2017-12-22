@@ -1,6 +1,7 @@
-import {NAMESPACE} from '@stiligita/constants'
+import {CREATE_SELECTOR} from '@stiligita/constants'
 import {render} from '@stiligita/dom'
 import minify from './minify'
+
 export {default as ServerStyleSheet} from './server-stylesheet'
 
 /**
@@ -15,7 +16,7 @@ export {default as ServerStyleSheet} from './server-stylesheet'
 export default function (rules, keyframes) {
   return minify(Object.keys(rules)
     .map(key =>
-      render.processCSS(`[data-${NAMESPACE}="${key}"]`, `${rules[key]}`))
+      render.processCSS(render[CREATE_SELECTOR](key, 'css'), `${rules[key]}`))
     .concat(Object.keys(keyframes).map(key =>
       render.processCSS('', `@keyframes ${key}{${keyframes[key]}}`))).join(''))
 }

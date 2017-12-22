@@ -18,7 +18,8 @@
   ],
   "dependencies": {
     "@stiligita/constants": "^0.0.1-1",
-    "@stiligita/dom": "^0.0.1-2"
+    "@stiligita/dom": "^0.0.1-2",
+    "@stiligita/store": "^0.0.1-2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
