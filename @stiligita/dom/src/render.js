@@ -11,7 +11,7 @@ import {GET_NAME, PRE_PROCESSOR, PROCESSOR, CREATE_COMPONENT} from '@stiligita/c
  */
 const simpleProcessor = (key, content) => key ? `${key}{${content}}` : content
 const simplePreProcessor = rules => rules
-const simpleGetName = name => `stiligita--${name}`
+const simpleGetName = name => name
 // @todo Add something more meaningfull here
 const simpleCreateComponent = () => () => {}
 
