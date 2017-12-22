@@ -1,4 +1,4 @@
-const store = require('@stiligita/store').default
+import store from '@stiligita/store'
 
 class ServerStyleSheet {
   getStyleTag() {
