@@ -23,13 +23,15 @@ const simpleCreateComponent = () => () => {}
 const simpleCreateSelector = (id, mode) => {
   switch (mode) {
     case 'css':
-      return `[data-styled="${id}"]`
+      return `[data-styled*="${id}"]`
     case 'html':
       return {'data-styled': id}
     default:
       throw new TypeError(`Unknown createSelector case "${mode}". Use "css" or "html"`)
   }
 }
+
+simpleCreateSelector[CREATE_SELECTOR] = 'data-styled'
 
 /**
  * Private render class. Hnadles the entire rendering logic.

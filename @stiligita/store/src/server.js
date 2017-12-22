@@ -27,7 +27,7 @@ class Store {
     return this.__STYLE_TAG__
   }
 
-  getName(hash) {
+  getName(hash, ) {
     return render.getName(hash, this.__KEYS__)
   }
 

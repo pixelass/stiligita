@@ -20,7 +20,14 @@ const createReactComponent = (strings, args, tag, defaultProps) => {
     const css = render.preProcessCSS(templateWithProps(strings, args, props))
     const hash = hashCode(css)
     store.addRules({[hash]: css})
-    return createElement(Element, {...props, tag, hash: store.getName(hash)}, props.children)
+    const hashes = [store.getName(hash)]
+    // The tag might be a component with previously applied classNames or
+    // data-attributes
+    // We need to make sure they are not overwritten
+    if (props[render[CREATE_SELECTOR][CREATE_SELECTOR]]) {
+      hashes.push(props[render[CREATE_SELECTOR][CREATE_SELECTOR]])
+    }
+    return createElement(Element, {...props, tag, hash: hashes.join(' ')}, props.children)
   }
   Component.displayName = `styled-${tag}`
   return Component
