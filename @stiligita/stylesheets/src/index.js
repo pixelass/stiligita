@@ -1,6 +1,7 @@
 import {NAMESPACE} from '@stiligita/constants'
 import {render} from '@stiligita/dom'
 import minify from './minify'
+export {default as ServerStyleSheet} from './server-stylesheet'
 
 /**
  * Sends style rules and keyframes into a processor and returns the result
