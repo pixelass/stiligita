@@ -7,6 +7,7 @@
   },
   "scripts": {
     "babel": "babel src --out-dir lib --copy-files",
+    "babel:watch": "babel src --out-dir lib --copy-files -w -s",
     "test": "bundlesize"
   },
   "bundlesize": [

@@ -13,9 +13,9 @@ class Store {
 
   diff(key) {
     if (isFalsy(key, this.__KEYS__)) {
-      return Promise.resolve(false)
+      return false
     }
-    return Promise.resolve(true)
+    return true
   }
 
   update() {
@@ -28,18 +28,16 @@ class Store {
 
   addStyles(obj, prop) {
     const [key] = Object.keys(obj)
-    this.diff(key).then(undef => {
-      if (undef) {
-        this.__KEYS__.push(key)
-        const newObj = {
-          [this.getName(key)]: obj[key]
-        }
-        this[prop] = {...this[prop], ...newObj}
-        this.update()
+    if (this.diff(key)) {
+      this.__KEYS__.push(key)
+      const newObj = {
+        [this.getName(key)]: obj[key]
       }
-      // Styles have already been written
-      // no need for operations
-    })
+      this[prop] = {...this[prop], ...newObj}
+      this.update()
+    }
+    // Styles have already been written
+    // no need for operations
   }
 
   addRules(obj) {

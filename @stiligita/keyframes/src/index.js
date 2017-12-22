@@ -14,9 +14,9 @@ import {templateWithVars} from '@stiligita/templates'
  */
 const keyframes = (strings, ...args) => {
   const css = templateWithVars(strings, args)
-  const id = store.getName(hashCode(css))
+  const id = hashCode(css)
   store.addKeyframes({[id]: css})
-  return id
+  return store.getName(id)
 }
 
 export default keyframes

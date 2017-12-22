@@ -2,8 +2,16 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import Stylis from 'stylis'
 import styled from '@stiligita/core'
-import {PROCESSOR} from '@stiligita/constants'
+import keyframes from '@stiligita/keyframes'
+import {PROCESSOR, GET_NAME} from '@stiligita/constants'
+import Abcq from 'abcq'
 import react from '../lib'
+const shortid = new Abcq()
+const shortId = (key, keys) => {
+  // console.log(key, keys)
+  return shortid.encode(keys.indexOf(key))
+}
+shortId.stiligita = GET_NAME
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
@@ -40,6 +48,9 @@ sortCSSProps.stiligita = PROCESSOR
 styled
   .before(sortCSSProps)
   .use(react)
+  .use(shortId)
+
+const spin = keyframes`to{transform:rotate(1turn)}`
 
 const theme = {
   primary: '#0080ff',
@@ -55,10 +66,6 @@ const theme = {
 const Wrapper = styled.div`
   background: #fff;
   color: ${theme.darkText};
-  display: grid;
-  grid-template-rows: 100px 1fr 100px;
-  grid-template-areas: "header" "main" "footer";
-  min-height: calc(100vh - 1em);
 `
 
 const PageTitle = styled.h1`
@@ -79,15 +86,21 @@ const SecondTitle = styled.h2`
   user-select: none;
 `
 
+const Spinner = styled.div`
+  height: 5em;
+  width: 5em;
+  border: 2px solid;
+  animation: ${spin} 2s infinite;
+`
+
 class App extends Component {
   constructor() {
     super()
-    this.state = {}
-    this.handleClick = this.handleClick.bind(this)
   }
   render() {
     return (
       <Wrapper>
+        <Spinner/>
         <PageTitle>
           Reusing selectors!
         </PageTitle>
