@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/vue",
-  "version": "0.0.1-3",
+  "version": "0.0.1-4",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -20,12 +20,12 @@
   "dependencies": {
     "@stiligita/constants": "^0.0.1-1",
     "@stiligita/hash-code": "^0.0.1-1",
-    "@stiligita/store": "^0.0.1-3",
+    "@stiligita/store": "^0.0.1-4",
     "@stiligita/templates": "^0.0.1-1"
   },
   "devDependencies": {
     "@stiligita/core": "^0.0.1-2",
-    "@stiligita/keyframes": "^0.0.1-3",
+    "@stiligita/keyframes": "^0.0.1-4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
