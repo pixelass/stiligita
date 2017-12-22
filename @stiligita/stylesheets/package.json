@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/stylesheets",
-  "version": "0.0.1-1",
+  "version": "0.0.1-2",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@stiligita/constants": "^0.0.1-1",
-    "@stiligita/dom": "^0.0.1-1"
+    "@stiligita/dom": "^0.0.1-2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

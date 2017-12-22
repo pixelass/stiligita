@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/store",
-  "version": "0.0.1-1",
+  "version": "0.0.1-2",
   "browser": "lib/index.js",
   "main": "lib/server.js",
   "publishConfig": {
@@ -18,8 +18,8 @@
     }
   ],
   "dependencies": {
-    "@stiligita/dom": "^0.0.1-1",
-    "@stiligita/stylesheets": "^0.0.1-1",
+    "@stiligita/dom": "^0.0.1-2",
+    "@stiligita/stylesheets": "^0.0.1-2",
     "@stiligita/utils": "^0.0.1-1"
   },
   "devDependencies": {

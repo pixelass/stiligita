@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/core",
-  "version": "0.0.1-1",
+  "version": "0.0.1-2",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@stiligita/constants": "^0.0.1-1",
-    "@stiligita/dom": "^0.0.1-1",
+    "@stiligita/dom": "^0.0.1-2",
     "@stiligita/dom-elements": "^0.0.1-1"
   },
   "devDependencies": {
