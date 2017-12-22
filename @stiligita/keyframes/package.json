@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/keyframes",
-  "version": "0.0.1-5",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -17,9 +17,9 @@
     }
   ],
   "dependencies": {
-    "@stiligita/hash-code": "^0.0.1-1",
-    "@stiligita/store": "^0.0.1-5",
-    "@stiligita/templates": "^0.0.1-1"
+    "@stiligita/hash-code": "^1.0.0-0",
+    "@stiligita/store": "^1.0.0-0",
+    "@stiligita/templates": "^1.0.0-0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

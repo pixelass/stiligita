@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/hash-code",
-  "version": "0.0.1-1",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"

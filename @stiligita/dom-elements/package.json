@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/dom-elements",
-  "version": "0.0.1-1",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -21,7 +21,7 @@
     }
   ],
   "dependencies": {
-    "@stiligita/utils": "^0.0.1-1"
+    "@stiligita/utils": "^1.0.0-0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

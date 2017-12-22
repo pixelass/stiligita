@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/react",
-  "version": "0.0.1-5",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
@@ -23,15 +23,15 @@
     }
   ],
   "dependencies": {
-    "@stiligita/constants": "^0.0.1-1",
-    "@stiligita/core": "^0.0.1-2",
-    "@stiligita/dom": "^0.0.1-2",
-    "@stiligita/hash-code": "^0.0.1-1",
-    "@stiligita/keyframes": "^0.0.1-5",
-    "@stiligita/store": "^0.0.1-5",
-    "@stiligita/stylesheets": "^0.0.1-5",
-    "@stiligita/templates": "^0.0.1-1",
-    "@stiligita/utils": "^0.0.1-1"
+    "@stiligita/constants": "^1.0.0-0",
+    "@stiligita/core": "^1.0.0-0",
+    "@stiligita/dom": "^1.0.0-0",
+    "@stiligita/hash-code": "^1.0.0-0",
+    "@stiligita/keyframes": "^1.0.0-0",
+    "@stiligita/store": "^1.0.0-0",
+    "@stiligita/stylesheets": "^1.0.0-0",
+    "@stiligita/templates": "^1.0.0-0",
+    "@stiligita/utils": "^1.0.0-0"
   },
   "devDependencies": {
     "abcq": "^0.2.2",

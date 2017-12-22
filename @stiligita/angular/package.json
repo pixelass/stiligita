@@ -1,6 +1,6 @@
 {
   "name": "@stiligita/angular",
-  "version": "0.0.1-5",
+  "version": "1.0.0-0",
   "publishConfig": {
     "access": "public"
   },
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@angular/core": "^5.0.0",
-    "@stiligita/constants": "^0.0.1-1",
-    "@stiligita/hash-code": "^0.0.1-1",
-    "@stiligita/store": "^0.0.1-5",
-    "@stiligita/templates": "^0.0.1-1"
+    "@stiligita/constants": "^1.0.0-0",
+    "@stiligita/hash-code": "^1.0.0-0",
+    "@stiligita/store": "^1.0.0-0",
+    "@stiligita/templates": "^1.0.0-0"
   },
   "devDependencies": {
     "@angular/cli": "1.6.0",
