@@ -1,18 +1,12 @@
 const React = require('react')
 const {renderToStaticMarkup} = require('react-dom/server')
 const styled = require('@stiligita/core').default
-const store = require('@stiligita/store').default
+const {ServerStyleSheet} = require('@stiligita/stylesheets')
 const {PROCESSOR, GET_NAME} = require('@stiligita/constants')
 const Abcq = require('abcq')
 const react = require('../lib').default
 
 const shortid = new Abcq()
-
-class ServerStyleSheet {
-  getStyleTag() {
-    return `<style>${store.getStyles()}</style>`
-  }
-}
 
 const safelyAlphanumeric = (a, b) => {
   const propA = a.split(':')[0]

@@ -86,11 +86,15 @@ const SecondTitle = styled.h2`
   user-select: none;
 `
 
-const Spinner = styled.div`
-  height: 5em;
-  width: 5em;
-  border: 2px solid;
+const Spinner = styled.svg`
+  font-size: 5em;
+  height: 1em;
+  width: 1em;
   animation: ${spin} 2s infinite;
+`
+
+const Rect = styled.rect`
+  fill: green;
 `
 
 class App extends Component {
@@ -100,7 +104,9 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Spinner/>
+        <Spinner viewBox='0 0 100 100'>
+          <Rect y='25' x='25' height='50' width='50'/>
+        </Spinner>
         <PageTitle>
           Reusing selectors!
         </PageTitle>
