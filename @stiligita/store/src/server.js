@@ -7,8 +7,8 @@ class Store {
     this.__STYLES__ = {}
     this.__KEYFRAMES__ = {}
     this.__KEYS__ = []
-    this.__STYLE_TAG__ = document.createElement('style')
-    document.head.appendChild(this.__STYLE_TAG__)
+    this.__STYLE_TAG__ = null
+    this.getName = this.getName.bind(this)
   }
 
   diff(key) {
@@ -19,7 +19,12 @@ class Store {
   }
 
   update() {
-    this.__STYLE_TAG__.innerHTML = createStyleBlock(this.__STYLES__, this.__KEYFRAMES__)
+    this.__STYLE_TAG__ = createStyleBlock(this.__STYLES__, this.__KEYFRAMES__)
+    return Promise.resolve()
+  }
+
+  getStyles() {
+    return this.__STYLE_TAG__
   }
 
   getName(hash) {

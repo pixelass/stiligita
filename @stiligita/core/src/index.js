@@ -29,6 +29,7 @@ function styled(tag, props) {
 // Add static `use` to allow setting plugins from `styled`
 // prevents having to expose the entire render instance
 styled.use = plugin => render.use(plugin)
+styled.before = plugin => render.before(plugin)
 
 // Add literals for each DOM element
 domElements.forEach(tag => {

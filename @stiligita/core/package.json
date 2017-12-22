@@ -1,10 +1,13 @@
 {
   "name": "@stiligita/core",
-  "version": "1.0.0",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
-    "babel:watch": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files -w -s",
+    "babel": "babel src --out-dir lib --copy-files",
+    "babel:watch": "babel src --out-dir lib --copy-files -w -s",
     "test": "bundlesize"
   },
   "bundlesize": [
@@ -14,9 +17,9 @@
     }
   ],
   "dependencies": {
-    "@stiligita/constants": "^1.0.0",
-    "@stiligita/dom": "^1.0.0",
-    "@stiligita/dom-elements": "^1.0.0"
+    "@stiligita/constants": "^1.0.0-0",
+    "@stiligita/dom": "^1.0.0-0",
+    "@stiligita/dom-elements": "^1.0.0-0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -3,16 +3,55 @@ import {render} from 'react-dom'
 import Stylis from 'stylis'
 import styled from '@stiligita/core'
 import keyframes from '@stiligita/keyframes'
-import {PROCESSOR} from '@stiligita/constants'
-import react from '../src'
+import {PROCESSOR, GET_NAME} from '@stiligita/constants'
+import Abcq from 'abcq'
+import react from '../lib'
+
+const shortid = new Abcq()
+const shortId = (key, keys) => {
+  // A console.log(key, keys)
+  return shortid.encode(keys.indexOf(key))
+}
+shortId.stiligita = GET_NAME
 
 const stylis = new Stylis({keyframe: false})
 stylis.stiligita = PROCESSOR
-styled
-  .use(react)
-  .use(stylis)
 
-const spin = keyframes`to {transform: rotate(360deg);}`
+const safelyAlphanumeric = (a, b) => {
+  const propA = a.split(':')[0]
+  const propB = b.split(':')[0]
+  const propAPre = propA.split('-')[0]
+  const propBPre = propB.split('-')[0]
+  if (propAPre > propBPre) {
+    return 1
+  }
+  if (propAPre < propBPre) {
+    return -1
+  }
+  if (propA > propB) {
+    return 1
+  }
+  if (propA < propB) {
+    return -1
+  }
+  return 0
+}
+
+const sortCSSProps = rules => {
+  rules = rules.split(';').filter(Boolean)
+  .sort(safelyAlphanumeric)
+  .join(';')
+  return rules
+}
+
+sortCSSProps.stiligita = PROCESSOR
+
+styled
+  .before(sortCSSProps)
+  .use(react)
+  .use(shortId)
+
+const spin = keyframes`to{transform:rotate(1turn)}`
 
 const theme = {
   primary: '#0080ff',
@@ -28,29 +67,6 @@ const theme = {
 const Wrapper = styled.div`
   background: #fff;
   color: ${theme.darkText};
-  display: grid;
-  grid-template-rows: 100px 1fr 100px;
-  grid-template-areas: "header" "main" "footer";
-  min-height: calc(100vh - 1em);
-`
-
-const Header = styled.header`
-  grid-area: header;
-  background: ${theme.dark};
-  color: ${theme.lightText};
-`
-
-const Footer = styled.footer`
-  grid-area: footer;
-  background: ${theme.dark};
-  color: ${theme.lightText};
-`
-
-const Spinner = styled.span`
-  position: relative;
-  display: inline-block;
-  animation: ${spin} 2s linear infinite;
-  animation-direction: ${props => props.active ? 'normal' : 'reverse'};
 `
 
 const PageTitle = styled.h1`
@@ -62,66 +78,39 @@ const PageTitle = styled.h1`
   text-align: center;
 `
 
-const Button = styled('button', {
-  type: 'button'
-})`
-  background: ${props => props.primary ? theme.primary : theme.secondary};
-  color: black;
-  padding: 1em 2em;
-  margin 0.5em;
-  line-height: 1;
-  font-size: 1em;
-  border: 0;
-  border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 0 2px ${props => props.primary ? theme.light : theme.secondaryLight};
-  cursor: pointer;
+const SecondTitle = styled.h2`
+  margin: 0;
+  font-family: Arial, Verdana, sans-serif;
+  font-weight: lighter;
+  font-size: 4em;
+  text-align: center;
+  user-select: none;
+`
 
-  &:hover {
-    color: ${theme.lightText};
-    background: ${props => props.primary ? theme.dark : theme.secondaryDark};
-  }
+const Spinner = styled.svg`
+  font-size: 5em;
+  height: 1em;
+  width: 1em;
+  animation: ${spin} 2s infinite;
+`
 
-  &:active {
-    box-shadow:
-      0 0 0 2px ${props => props.primary ? theme.light : theme.secondaryLight},
-      0 3px 5px 2px ${props => props.primary ? theme.dark : theme.secondaryDark};
-  }
-
-  &:focus {
-    outline: 0;
-    box-shadow:
-      0 0 0 2px ${props => props.primary ? theme.light : theme.secondaryLight},
-      0 3px 5px 2px ${props => props.primary ? theme.dark : theme.secondaryDark},
-      0 2px 7px 2px ${props => props.primary ? theme.light : theme.secondaryLight};
-  }
+const Rect = styled.rect`
+  fill: green;
 `
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {}
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick() {
-    this.setState({
-      active: !this.state.active
-    })
-  }
   render() {
-    const {active} = this.state
     return (
       <Wrapper>
-        <Header data-foo='I should work'>
-          <PageTitle>
-            <Spinner {...{active}}>🔫</Spinner> Stiligita <Spinner {...{active}}>🌀</Spinner>
-          </PageTitle>
-        </Header>
-        <main>
-          <Button onClick={this.handleClick} primary>Switch direction</Button>
-          <Button onClick={this.handleClick}>Switch direction</Button>
-        </main>
-        <Footer>© 2017 | Gregor Adams greg@pixelass.com</Footer>
+        <Spinner viewBox='0 0 100 100'>
+          <Rect y='25' x='25' height='50' width='50'/>
+        </Spinner>
+        <PageTitle>
+          Reusing selectors!
+        </PageTitle>
+        <SecondTitle>
+          Reusing selectors!
+        </SecondTitle>
       </Wrapper>
     )
   }

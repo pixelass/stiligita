@@ -1,9 +1,13 @@
 {
   "name": "@stiligita/keyframes",
-  "version": "1.0.0",
+  "version": "1.0.0-0",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "babel": "cross-env NODE_ENV=production babel src --out-dir lib --copy-files",
+    "babel": "babel src --out-dir lib --copy-files",
+    "babel:watch": "babel src --out-dir lib --copy-files -w -s",
     "test": "bundlesize"
   },
   "bundlesize": [
@@ -13,9 +17,9 @@
     }
   ],
   "dependencies": {
-    "@stiligita/hash-code": "^1.0.0",
-    "@stiligita/store": "^1.0.0",
-    "@stiligita/templates": "^1.0.0"
+    "@stiligita/hash-code": "^1.0.0-0",
+    "@stiligita/store": "^1.0.0-0",
+    "@stiligita/templates": "^1.0.0-0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

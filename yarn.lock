@@ -220,6 +220,10 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
+abcq@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/abcq/-/abcq-0.2.2.tgz#c4fa77fd3f35ceb3fac577b2b75a325bee6a2779"
+
 accepts@~1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.4.tgz#86246758c7dd6d21a6474ff084a4740ec05eb21f"

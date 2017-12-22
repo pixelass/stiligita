@@ -16,7 +16,7 @@ const keyframes = (strings, ...args) => {
   const css = templateWithVars(strings, args)
   const id = hashCode(css)
   store.addKeyframes({[id]: css})
-  return id
+  return store.getName(id)
 }
 
 export default keyframes
